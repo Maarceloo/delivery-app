@@ -15,6 +15,21 @@ const login = async ({ email, password }) => {
     return { status: null, message: getUser }
 }
 
+const postUser = async ({ name, email, password }) => {
+    const newPassword = md5(password)
+    const getUserByEmail = await User.findOne({ where: { email } })
+    const getUserByName = await User.findOne({ where: { name } })
+    if(getUserByEmail || getUserByName) {
+        return {status: 409, message: 'User Alredy Exist'}
+    }
+    const createUser = await User.create({ name, email, password: newPassword })
+    if (!createUser) {
+        return { status: 400, message: 'User Not Created' }
+    }
+    return { status: null, message: createUser }
+}
+
 module.exports = {
-    login
+    login,
+    postUser
 }

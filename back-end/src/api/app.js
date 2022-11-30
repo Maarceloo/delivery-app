@@ -1,13 +1,11 @@
 const express = require('express');
-const userControllers = require('./Controllers/UserControllers')
-const userMiddlewares = require('./Middlewares/LoginValidate')
+const userRoutes = require('./Routes/UserRoutes');
 
 const app = express();
 
 app.use(express.json());
+app.use(userRoutes)
 
 app.get('/coffee', (_req, res) => res.status(418).end());
-
-app.get('/login', userMiddlewares.emailValidate, userMiddlewares.passwordValidate, userControllers.login)
 
 module.exports = app;

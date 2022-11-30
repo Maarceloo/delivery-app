@@ -24,7 +24,19 @@ const passwordValidate = async (req, res, next) => {
     return next()
 }
 
+const nameValidate = async (req, res, next) => {
+    const { body } = req
+    if (!body.name) {
+        return res.status(400).json({ message: 'Fields Missing' })
+    }
+    if (body.name.length < 12) {
+        return res.status(404).json({ message: 'Invalid name' })
+    }
+    return next()
+}
+
 module.exports = {
     emailValidate,
     passwordValidate,
+    nameValidate
 }

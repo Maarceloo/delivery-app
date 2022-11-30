@@ -20,7 +20,8 @@ const UserSchema = (sequelize, DataTypes) => {
     },
       role: {
         type: DataTypes.STRING,
-        allowNull: false
+        allowNull: false,
+        defaultValue: 'customer'
     },
     },
     {
