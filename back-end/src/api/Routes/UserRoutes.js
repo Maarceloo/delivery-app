@@ -4,7 +4,7 @@ const userMiddlewares = require('../Middlewares/LoginValidate');
 
 const userRoutes = Router();
 
-userRoutes.get('/login', 
+userRoutes.post('/login', 
 userMiddlewares.emailValidate, userMiddlewares.passwordValidate, userControllers.login);
 
 userRoutes.post('/register',

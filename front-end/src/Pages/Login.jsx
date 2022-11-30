@@ -43,19 +43,23 @@ function App() {
           onChange={ ({ target }) => setPassword(target.value) }
         />
       </label>
-      <input
+      <button
+        id="button"
         type="button"
         value="Login"
         data-testid="common_login__button-login"
         disabled={ disabledLoginBttn() }
-        // onClick={ handleClick() }
-      />
-      <input
+      >
+        Login
+      </button>
+      <button
         type="button"
         value="Ainda não tenho conta"
         data-testid="common_login__button-register"
         // onClick={ () => {} }
-      />
+      >
+        Ainda não tenho conta
+      </button>
     </form>
   );
 }

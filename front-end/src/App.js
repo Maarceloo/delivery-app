@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Route, Switch } from 'react-router-dom';
+import { Redirect, Route, Switch } from 'react-router-dom';
 import Provider from './Context/Provider';
 import Login from './Pages/Login';
 
@@ -8,7 +8,7 @@ class App extends Component {
     return (
       <Provider>
         <Switch>
-          <Route exact path="/" component={ Login } />
+          <Redirect exact from="/" to="/login" />
           <Route exact path="/login" component={ Login } />
         </Switch>
 
