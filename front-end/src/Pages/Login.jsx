@@ -1,10 +1,10 @@
-import React from 'react';
+import React, { useContext } from 'react';
 // import { useHistory } from 'react-router-dom';
 import Context from '../Context/MyContext';
 
 function App() {
   // const history = useHistory();
-  const { email, password } = React.useContext(Context);
+  const { email, setEmail, password, setPassword } = useContext(Context);
 
   const disabledLoginBttn = () => {
     const minPassword = 6;
@@ -29,7 +29,7 @@ function App() {
           value={ email }
           data-testid="common_login__input-email"
           placeholder="Digite seu Email"
-          // onChange={ ({ target }) => setEmail(target.value) }
+          onChange={ ({ target }) => setEmail(target.value) }
         />
       </label>
       <label htmlFor="password">
@@ -40,7 +40,7 @@ function App() {
           value={ password }
           data-testid="common_login__input-password"
           placeholder="Digite sua Senha"
-          // onChange={ ({ target }) => setPassword(target.value) }
+          onChange={ ({ target }) => setPassword(target.value) }
         />
       </label>
       <input
