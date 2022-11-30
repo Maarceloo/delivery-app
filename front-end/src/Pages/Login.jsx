@@ -1,10 +1,14 @@
-import React, { useContext } from 'react';
-// import { useHistory } from 'react-router-dom';
+import React, { useContext, useState } from 'react';
+import { useHistory } from 'react-router-dom';
+// import { Redirect } from 'react-router-dom';
 import Context from '../Context/MyContext';
+import { postLogin } from '../Service/request';
 
 function App() {
-  // const history = useHistory();
+  const [login, setLogin] = useState(false);
+  const history = useHistory();
   const { email, setEmail, password, setPassword } = useContext(Context);
+  const objLogin = { email, password };
 
   const disabledLoginBttn = () => {
     const minPassword = 6;
@@ -15,9 +19,16 @@ function App() {
     }
   };
 
-  // const handleClick = () => {
-  //   history.push('/bebidas');
-  // };
+  const handleClick = async () => {
+    try {
+      await postLogin('login', objLogin);
+      setLogin(false);
+      history.push('/customer/products');
+    } catch (error) {
+      setLogin(true);
+      console.log('erro', error);
+    }
+  };
 
   return (
     <form>
@@ -49,6 +60,7 @@ function App() {
         value="Login"
         data-testid="common_login__button-login"
         disabled={ disabledLoginBttn() }
+        onClick={ handleClick }
       >
         Login
       </button>
@@ -56,10 +68,13 @@ function App() {
         type="button"
         value="Ainda não tenho conta"
         data-testid="common_login__button-register"
-        // onClick={ () => {} }
+
       >
         Ainda não tenho conta
       </button>
+      { login
+       && <p data-testid="common_login__element-invalid-email">Usuário Inexistente! </p>}
+
     </form>
   );
 }
