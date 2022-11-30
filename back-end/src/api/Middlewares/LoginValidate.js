@@ -18,13 +18,13 @@ const passwordValidate = async (req, res, next) => {
     if (!body.password) {
         return res.status(400).json({ message: 'Fields Missing' })
     }
-    if (!body.password.length < 6) {
+    if (body.password.length < 6) {
         return res.status(404).json({ message: 'Invalid Password' })
     }
     return next()
 }
 
 module.exports = {
-    validateEmail,
+    emailValidate,
     passwordValidate,
 }
