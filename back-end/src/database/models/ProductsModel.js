@@ -3,20 +3,22 @@ const ProducstModelSchema = (sequelize, DataTypes) => {
       "products",
       {
         id: {
+          primaryKey: true, 
+          allowNull: false,
           type: DataTypes.INTEGER,
-          foreignKey: true,
+          autoIncrement: true,
         },
         name: {
           type: DataTypes.INTEGER,
-          foreignKey: true,
+          allowNull: false,
         },
         price: {
           type: DataTypes.INTEGER,
-          foreignKey: true,
+          allowNull: false,
         },
         url_image: {
           type: DataTypes.INTEGER,
-          foreignKey: true,
+          allowNull: false,
         },
       },
       {
@@ -29,5 +31,5 @@ const ProducstModelSchema = (sequelize, DataTypes) => {
     return ProductsModel;
   };
   
-  module.exports = ProductsModel;
+module.exports = ProducstModelSchema;
   

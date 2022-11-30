@@ -1,4 +1,4 @@
-const UserModel = (sequelize, DataTypes) => {
+const UserSchema = (sequelize, DataTypes) => {
     const UserTable = sequelize.define('User', {
       id: {
         type: DataTypes.INTEGER,
@@ -30,6 +30,5 @@ const UserModel = (sequelize, DataTypes) => {
     })
     return UserTable
   }
-  module.exports = UserSchema;
 
-export default UserModel
+module.exports = UserSchema;
