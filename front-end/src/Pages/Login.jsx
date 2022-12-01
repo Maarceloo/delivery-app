@@ -1,10 +1,9 @@
 import React, { useContext, useState } from 'react';
 import { useHistory } from 'react-router-dom';
-// import { Redirect } from 'react-router-dom';
-import Context from '../Context/MyContext';
+import Context from '../Context/LoginContext';
 import { postLogin } from '../Service/request';
 
-function App() {
+function Login() {
   const [login, setLogin] = useState(false);
   const history = useHistory();
   const { email, setEmail, password, setPassword } = useContext(Context);
@@ -28,6 +27,10 @@ function App() {
       setLogin(true);
       console.log('erro', error);
     }
+  };
+
+  const clickRegister = () => {
+    history.push('/register');
   };
 
   return (
@@ -68,7 +71,7 @@ function App() {
         type="button"
         value="Ainda não tenho conta"
         data-testid="common_login__button-register"
-
+        onClick={ clickRegister }
       >
         Ainda não tenho conta
       </button>
@@ -79,4 +82,4 @@ function App() {
   );
 }
 
-export default App;
+export default Login;

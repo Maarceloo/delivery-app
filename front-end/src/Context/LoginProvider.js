@@ -1,8 +1,8 @@
 import React, { useMemo, useState } from 'react';
 import proptypes from 'prop-types';
-import MyContext from './MyContext';
+import LoginContext from './LoginContext';
 
-function Provider({ children }) {
+function LoginProvider({ children }) {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
@@ -14,14 +14,14 @@ function Provider({ children }) {
   }), [email, password]);
 
   return (
-    <MyContext.Provider value={ contextUser }>
+    <LoginContext.Provider value={ contextUser }>
       {children}
-    </MyContext.Provider>
+    </LoginContext.Provider>
   );
 }
 
-Provider.propTypes = {
+LoginProvider.propTypes = {
   children: proptypes.node.isRequired,
 };
 
-export default Provider;
+export default LoginProvider;
