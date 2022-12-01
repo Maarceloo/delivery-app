@@ -1,6 +1,6 @@
 const ProducstModelSchema = (sequelize, DataTypes) => {
     const ProductsModel = sequelize.define(
-      "products",
+      "Product",
       {
         id: {
           primaryKey: true, 
