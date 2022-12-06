@@ -1,3 +1,5 @@
+// https://github.com/brunowbbs/Frontend-III/tree/master/aula20 (req15)
+
 import React, { useState, useEffect } from 'react';
 import { getData } from '../Service/request';
 
@@ -8,26 +10,38 @@ function ProductCard() {
 
   async function getProducts() {
     const products = await getData('customer/products');
-    return setProduct(products);
+    setProduct(products);
   }
 
   useEffect(() => {
     getProducts();
-    product.map((item) => (
-      setQuantity((prev) => [...prev, { id: item.id, quantity: 0 }])));
-  });
+  }, []);
 
   const addQuantity = (productId) => {
-    console.log(quantity);
-    console.log(productId);
-    if (quantit) {
-      setQuantity(quantity.productId + 1);
+    const copyQuantity = [...quantity];
+    const item = quantity.find((i) => i.id === productId);
+    if (!item) {
+      copyQuantity.push({ id: productId, quantity: 1 });
     } else {
-      setQuantity(quantity.productId + 1);
+      item.quantity += 1;
+    }
+    setQuantity(copyQuantity);
+    console.log(copyQuantity);
+  };
+
+  const removeQuantity = (productId) => {
+    const copyQuantity = [...quantity];
+    const item = quantity.find((i) => i.id === productId);
+    if (item && item.quantity > 0) {
+      item.quantity -= 1;
+      setQuantity(copyQuantity);
+      console.log(copyQuantity);
+    } else {
+      const filter = copyQuantity.filter((i) => i.id !== productId);
+      setQuantity(filter);
+      // console.log(filter);
     }
   };
-  const removeQuantity = () => (quantity > 0
-    ? setQuantity(quantity - 1) : setQuantity(0));
 
   return (
     <>
@@ -41,7 +55,7 @@ function ProductCard() {
           <h1
             data-testid={ `customer_products__element-card-price-${item.id}` }
           >
-            {item.price}
+            {item.price.replace(/\./, ',') }
           </h1>
           <img
             data-testid={ `customer_products__img-card-bg-image-${item.id}` }
@@ -54,7 +68,7 @@ function ProductCard() {
           <button
             className="button"
             type="button"
-            onClick={ removeQuantity }
+            onClick={ () => removeQuantity(item.id) }
             // disabled={ buttonDisabled }
             data-testid={ `customer_products__button-card-rm-item-${item.id}` }
           >
@@ -64,7 +78,8 @@ function ProductCard() {
            */}
           <input
             type="text"
-            value={ quantity }
+            value={ quantity.find((i) => i.id === item.id)?.quantity
+              ? quantity.find((i) => i.id === item.id)?.quantity : 0 }
             data-testid={ `customer_products__input-card-quantity-${item.id}` }
           />
           <button
