@@ -16,7 +16,7 @@ const ProducstModelSchema = (sequelize, DataTypes) => {
           type: DataTypes.INTEGER,
           allowNull: false,
         },
-        url_image: {
+        urlImage: {
           type: DataTypes.INTEGER,
           allowNull: false,
         },
