@@ -6,7 +6,7 @@ module.exports = {
         {
           name: "Skol Lata 250ml",
           price: 2.2,
-          url_image: "https://us-southeast-1.linodeobjects.com/storage/dika/media/uploads/produto/cerv_skol_lata_350ml__b22ca6d3-bd2c-4784-bc7b-da11737cab4e.png",
+          url_image: "http://localhost:3001/images/skol_lata_350ml.jpg",
         },
         {
           name: "Heineken 600ml",
