@@ -20,8 +20,11 @@ function Login() {
 
   const handleClick = async () => {
     try {
-      await postLogin('login', objLogin);
+      const infoLogin = await postLogin('login', objLogin);
       setLogin(false);
+      console.log(infoLogin);
+      localStorage.setItem('user', JSON.stringify(infoLogin));
+
       history.push('/customer/products');
     } catch (error) {
       setLogin(true);
