@@ -14,33 +14,21 @@ const jwtConfig = {
 const jwtSign = async ({ id, name, email }) =>
   jwt.sign({ id, name, email }, await SECRET_KEY(), jwtConfig);
 
-// const jwtValidate = async (req, res, next) => {
-//   const token = req.header('Authorization');
+const jwtValidate = async (req, res, next) => {
+  const token = req.header('Authorization');
 
-//   if (!token) return res.status(401).json({ message: 'Token not found' });
+  if (!token) return res.status(401).json({ message: 'Token not found' });
 
-//   try {
-//     const decoded = jwt.verify(token, secret);
-//     req.user = decoded.userId;
-//     next();
-//   } catch (error) {
-//     return res.status(401).json({ message: 'Expired or invalid token' });
-//   }
-// };
-
-// const authenticateToken = async (req, res, next) => {
-//     const { id } = req.params;
-//     const { user } = req;
-
-//     const post = await postService.getPostId(id);
-//     if (!post) return res.status(404).json({ message: 'Post does not exist' });
-
-//     const { userId } = post.dataValues;
-//     if (userId !== user) return res.status(401).json({ message: 'Unauthorized user' });
-
-//     next();
-// };
+  try {
+    jwt.verify(token, await SECRET_KEY());
+    // req.user = decoded.userId;
+    next();
+  } catch (error) {
+    return res.status(401).json({ message: 'Expired or invalid token' });
+  }
+};
 
 module.exports = {
   jwtSign,
+  jwtValidate,
 };
