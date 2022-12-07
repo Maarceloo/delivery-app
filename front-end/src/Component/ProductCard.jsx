@@ -97,7 +97,7 @@ function ProductCard() {
           </h1>
           <img
             data-testid={ `customer_products__img-card-bg-image-${item.id}` }
-            src={ item.url_image }
+            src={ item.urlImage }
             alt={ item.name }
             width="100px"
           />
