@@ -5,10 +5,10 @@ module.exports = {
             allowNull: false,
             primaryKey: true,
             type: Sequelize.INTEGER,
-            references: {
-                model: 'Sales',
-                key: 'id'
-            },
+            // references: {
+            //     model: 'Sales',
+            //     key: 'id'
+            // },
             onUpdate: 'CASCADE',
             onDelete: 'CASCADE'
         },
@@ -16,10 +16,10 @@ module.exports = {
             allowNull: false,
             primaryKey: true,
             type: Sequelize.INTEGER, 
-            references: {
-                model: 'Product',
-                key: 'id'
-            },
+            // references: {
+            //     model: 'Product',
+            //     key: 'id'
+            // },
             onUpdate: 'CASCADE',
             onDelete: 'CASCADE'
         },
