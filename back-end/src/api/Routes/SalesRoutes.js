@@ -1,6 +1,6 @@
 const { Router } = require('express');
 const { postSales } = require('../Controllers/SalesController');
-const { getAllSales } = require('../Services/SalesService');
+const { getAllSales } = require('../Controllers/SalesController');
 
 const SalesRoute = Router();
 
