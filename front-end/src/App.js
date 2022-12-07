@@ -5,6 +5,7 @@ import RegisterProvider from './Context/RegisterProvider';
 import Login from './Pages/Login';
 import Products from './Pages/Products';
 import Register from './Pages/Register';
+import Checkout from './Pages/Checkout';
 
 class App extends Component {
   render() {
@@ -16,6 +17,7 @@ class App extends Component {
             <Route exact path="/login" component={ Login } />
             <Route exact path="/register" component={ Register } />
             <Route exact path="/customer/products" component={ Products } />
+            <Route exact path="/customer/checkout" component={ Checkout } />
           </Switch>
         </RegisterProvider>
       </LoginProvider>
