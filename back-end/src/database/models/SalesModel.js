@@ -11,12 +11,12 @@ const SalesModelSchema = (sequelize, DataTypes) => {
       userId: {
         type: DataTypes.INTEGER,
         allowNull: false,
-        foreignKey: true
+        foreignKey: true,
       },
       sellerId: {
         type: DataTypes.INTEGER,
         allowNull: false,
-        foreignKey: true
+        foreignKey: true,
       },
       totalPrice: {
         type: DataTypes.DECIMAL(9, 2),
@@ -48,13 +48,17 @@ const SalesModelSchema = (sequelize, DataTypes) => {
 
   SalesModel.associate = (models) => {
     SalesModel.belongsTo(models.User, {
-      as: 'users',
-      foreignKey: 'userId'
+      as: "users",
+      foreignKey: "userId",
     });
 
     SalesModel.belongsTo(models.User, {
-      as: 'sales',
-      foreignKey: 'sellerId'
+      as: "sales",
+      foreignKey: "sellerId",
+    });
+    SalesModel.hasMany(models.salesProducts, {
+      as: "Sales",
+      foreignKey: "saleId",
     });
   };
 

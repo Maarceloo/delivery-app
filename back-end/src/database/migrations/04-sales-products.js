@@ -6,7 +6,7 @@ module.exports = {
             primaryKey: true,
             type: Sequelize.INTEGER,
             references: {
-                model: 'sales',
+                model: 'Sales',
                 key: 'id'
             },
             onUpdate: 'CASCADE',
@@ -17,7 +17,7 @@ module.exports = {
             primaryKey: true,
             type: Sequelize.INTEGER, 
             references: {
-                model: 'products',
+                model: 'Product',
                 key: 'id'
             },
             onUpdate: 'CASCADE',
