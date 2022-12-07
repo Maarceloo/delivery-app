@@ -1,5 +1,7 @@
 const UserSchema = (sequelize, DataTypes) => {
-    const UserTable = sequelize.define('User', {
+  const UserTable = sequelize.define(
+    "User",
+    {
       id: {
         type: DataTypes.INTEGER,
         allowNull: false,
@@ -7,29 +9,41 @@ const UserSchema = (sequelize, DataTypes) => {
         primaryKey: true,
       },
       name: {
-          type: DataTypes.STRING,
-          allowNull: false
+        type: DataTypes.STRING,
+        allowNull: false,
       },
       email: {
-          type: DataTypes.STRING,
-          allowNull: false
+        type: DataTypes.STRING,
+        allowNull: false,
       },
       password: {
         type: DataTypes.STRING,
-        allowNull: false
-    },
+        allowNull: false,
+      },
       role: {
         type: DataTypes.STRING,
         allowNull: false,
-        defaultValue: 'customer'
-    },
+        defaultValue: "customer",
+      },
     },
     {
-      tableName: 'users',
+      tableName: "users",
       underscored: true,
       timestamps: false,
-    })
-    return UserTable
-  }
+    }
+  );
+  UserTable.associate = (models) => {
+    UserTable.hasMany(models.Sales, {
+      as: "sales",
+      foreignKey: 'sellerId',
+    });
+    UserTable.hasMany(models.Sales, {
+      as: "users",
+      foreignKey: 'userId',
+    });
+  };
+
+  return UserTable;
+};
 
 module.exports = UserSchema;
