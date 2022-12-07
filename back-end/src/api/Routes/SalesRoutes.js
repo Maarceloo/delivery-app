@@ -5,7 +5,8 @@ const { jwtValidate } = require('../Utils/Jwt');
 
 const SalesRoute = Router();
 
-SalesRoute.post('/seller/orders', jwtValidate, postSales);
+SalesRoute.post('/customer/orders', jwtValidate, postSales);
+SalesRoute.get('/customer/orders', getAllSales);
 SalesRoute.get('/seller/orders', getAllSales);
 
 module.exports = SalesRoute;
