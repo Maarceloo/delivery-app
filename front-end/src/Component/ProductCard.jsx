@@ -7,7 +7,6 @@ import { getData } from '../Service/request';
 function ProductCard() {
   const history = useHistory();
   const [quantity, setQuantity] = useState([]);
-  // const [buttonDisabled, setButtonDisabled] = useState(false);
   const [product, setProduct] = useState([]);
 
   async function getProducts() {
@@ -24,13 +23,10 @@ function ProductCard() {
     const item = quantity.find((i) => i.id === productId);
     if (!item) {
       copyQuantity.push({ id: productId, quantity: 1 });
-      console.log('ifadd');
     } else {
       item.quantity += 1;
-      console.log('elseadd');
     }
     setQuantity(copyQuantity);
-    console.log(copyQuantity, 'aqui');
   };
 
   const removeQuantity = (productId) => {
@@ -45,14 +41,10 @@ function ProductCard() {
 
     const item = quantity.find((i) => i.id === productId);
     if (item && item.quantity > 0) {
-      // item.quantity -= 1;
       setQuantity(n);
-      console.log('ifremove');
     } else {
       const filter = copyQuantity.filter((i) => i.id !== productId);
       setQuantity(filter);
-      console.log('elseremove');
-      // console.log(filter);
     }
   };
 
