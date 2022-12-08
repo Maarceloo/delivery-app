@@ -21,7 +21,7 @@ const getIdSale = async (id) => {
 };
 
 const postSales = async (body) => {
-  const date = new Date()
+  const date = new Date();
 
   const obj = {
     ...body,
