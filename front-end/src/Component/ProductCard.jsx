@@ -27,6 +27,7 @@ function ProductCard() {
       item.quantity += 1;
     }
     setQuantity(copyQuantity);
+    localStorage.setItem('cart', JSON.stringify(copyQuantity));
   };
 
   const removeQuantity = (productId) => {
@@ -42,9 +43,11 @@ function ProductCard() {
     const item = quantity.find((i) => i.id === productId);
     if (item && item.quantity > 0) {
       setQuantity(n);
+      localStorage.setItem('cart', JSON.stringify(n));
     } else {
       const filter = copyQuantity.filter((i) => i.id !== productId);
       setQuantity(filter);
+      localStorage.setItem('cart', JSON.stringify(filter));
     }
   };
 
@@ -53,13 +56,11 @@ function ProductCard() {
     const item = quantity.find((i) => i.id === productId);
     if (!item) {
       copyQuantity.push({ id: productId, quantity: Number(target) });
-      console.log('ifinput');
     } else {
       item.quantity = Number(target);
-      console.log('elseinput');
     }
     setQuantity(copyQuantity);
-    console.log(copyQuantity);
+    localStorage.setItem('cart', JSON.stringify(copyQuantity));
   };
 
   const sumCart = () => {
