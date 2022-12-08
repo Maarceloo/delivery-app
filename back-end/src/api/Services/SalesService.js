@@ -21,9 +21,11 @@ const getIdSale = async (id) => {
 };
 
 const postSales = async (body) => {
+  const date = new Date()
+
   const obj = {
     ...body,
-    saleDate: new Date(),
+    saleDate: date,
   };
 
   const newSale = await Sales.create(obj);

@@ -13,4 +13,5 @@ export const postLogin = async (endpoint, body) => {
   const { data } = await request.post(endpoint, body);
   return data;
 };
+
 export default request;
