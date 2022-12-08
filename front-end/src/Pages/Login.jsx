@@ -24,8 +24,11 @@ function Login() {
       setLogin(false);
       console.log(infoLogin);
       localStorage.setItem('user', JSON.stringify(infoLogin));
-
-      history.push('/customer/products');
+      if (infoLogin.role === 'seller') {
+        history.push('/seller/orders');
+      } else {
+        history.push('/customer/products');
+      }
     } catch (error) {
       setLogin(true);
       console.log('erro', error);

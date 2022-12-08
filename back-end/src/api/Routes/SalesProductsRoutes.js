@@ -6,7 +6,7 @@ const {
 
 const SalesProductsRoute = Router();
 
-SalesProductsRoute.post('/salesProducts', postSalesProducts);
-SalesProductsRoute.get('/salesProducts', getAllSalesProducts);
+SalesProductsRoute.post('/sales/products', postSalesProducts);
+SalesProductsRoute.get('/sales/products', getAllSalesProducts);
 
 module.exports = SalesProductsRoute;
