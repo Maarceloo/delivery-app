@@ -12,11 +12,18 @@ function CheckoutCard() {
     getCart();
   }, []);
 
-  const removeProductCart = (item) => {
+  // const removeProductCart = (item) => {
+  //   const copyCartProducts = [...cartProducts];
+  //   copyCartProducts.splice(item, 1);
+  //   setCartProducts(copyCartProducts);
+  //   // localStorage.setItem('cart', JSON.stringify(copyCartProducts));
+  // };
+
+  const removeItemCart = (item) => {
     const copyCartProducts = [...cartProducts];
-    copyCartProducts.splice(item, 1);
-    setCartProducts(copyCartProducts);
-    localStorage.setItem('cart', JSON.stringify(copyCartProducts));
+    const filter = copyCartProducts.filter((i) => i.id !== item.id);
+    setCartProducts(filter);
+    localStorage.setItem('cart', JSON.stringify(filter));
   };
 
   const totalProducts = () => {
@@ -64,7 +71,7 @@ function CheckoutCard() {
                 type="button"
                 data-testid={ `${dataTestid}remove-${index}` }
                 value="Remover"
-                onClick={ () => removeProductCart(item) }
+                onClick={ () => removeItemCart(item) }
               >
                 Remover
               </button>
