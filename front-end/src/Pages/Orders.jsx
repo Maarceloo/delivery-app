@@ -3,20 +3,21 @@ import { Link } from 'react-router-dom';
 import { getData } from '../Service/request';
 import NavBar from '../Component/Navbar';
 
-function SellerOrders() {
+function Orders() {
   const [sales, setSales] = useState([]);
+  const [role, setRole] = useState([]);
+
+  function getRole() {
+    const user = JSON.parse(localStorage.getItem('user'));
+    console.log(role);
+    setRole(user.role);
+  }
 
   const dateFormat = (invalidData) => {
     const data = new Date(invalidData);
     const dateFormated = `${data.getDate()}/${data.getMonth() + 1}/${data.getFullYear()}`;
     return dateFormated;
   };
-
-  // const createDate = () => {
-  //   const date = new Date()
-  //   console.log(date, 'date');
-  //   return date
-  // }
 
   async function getSales() {
     const saless = await getData('seller/orders');
@@ -27,6 +28,7 @@ function SellerOrders() {
 
   useEffect(() => {
     getSales();
+    getRole();
   }, []);
 
   return (
@@ -36,7 +38,7 @@ function SellerOrders() {
         {
           sales.map((item) => (
             <div key={ item.id }>
-              <Link to="/seller/orders/details">
+              <Link color="black" to="/seller/orders/details">
                 <p data-testid={ `seller_orders__element-order-id-${item.id}` }>
                   Pedido
                   {' '}
@@ -79,4 +81,4 @@ function SellerOrders() {
   );
 }
 
-export default SellerOrders;
+export default Orders;
