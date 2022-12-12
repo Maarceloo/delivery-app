@@ -10,9 +10,9 @@ const login = async (req, res) => {
   }
 
   const token = await jwtSign(message);
-  req.authorization = token;
 
   const { id, name, email, role } = message;
+
 
   return res.status(200).json({ id, name, email, role, token });
 };

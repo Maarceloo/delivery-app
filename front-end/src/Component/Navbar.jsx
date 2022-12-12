@@ -15,18 +15,35 @@ function NavBar() {
   return (
     <header>
       <nav>
-        <Link
-          to="/products"
-          data-testid="customer_products__element-navbar-link-products"
-        >
-          Produtos
-        </Link>
-        <Link
-          to="/orders"
-          data-testid="customer_products__element-navbar-link-orders"
-        >
-          Meus Pedidos
-        </Link>
+
+        {
+          username.role === 'seller' ? (
+            <Link
+              to="/seller/orders"
+              data-testid="seller_products__element-navbar-link-orders"
+            >
+              Pedidos
+            </Link>
+          )
+            : (
+              <>
+                <Link
+                  to="/products"
+                  data-testid="customer_products__element-navbar-link-products"
+                >
+                  Produtos
+                </Link>
+                <Link
+                  to="/customer/orders"
+                  data-testid="customer_products__element-navbar-link-orders"
+                >
+                  Meus Pedidos
+                </Link>
+
+              </>
+            )
+        }
+
         <h1
           data-testid="customer_products__element-navbar-user-full-name"
         >

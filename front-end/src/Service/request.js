@@ -15,4 +15,5 @@ export const postData = async (endpoint, body, token) => {
   } });
   return data;
 };
+
 export default request;
