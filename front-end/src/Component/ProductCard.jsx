@@ -7,7 +7,6 @@ import { getData } from '../Service/request';
 function ProductCard() {
   const history = useHistory();
   const [quantity, setQuantity] = useState([]);
-  // const [buttonDisabled, setButtonDisabled] = useState(false);
   const [product, setProduct] = useState([]);
 
   async function getProducts() {
@@ -19,55 +18,49 @@ function ProductCard() {
     getProducts();
   }, []);
 
-  const addQuantity = (productId) => {
+  const addQuantity = (produto) => {
     const copyQuantity = [...quantity];
-    const item = quantity.find((i) => i.id === productId);
+    const item = quantity.find((i) => i.id === produto.id);
     if (!item) {
-      copyQuantity.push({ id: productId, quantity: 1 });
-      console.log('ifadd');
+      copyQuantity.push({ ...produto, quantity: 1 });
     } else {
       item.quantity += 1;
-      console.log('elseadd');
     }
     setQuantity(copyQuantity);
-    console.log(copyQuantity, 'aqui');
+    localStorage.setItem('cart', JSON.stringify(copyQuantity));
   };
 
-  const removeQuantity = (productId) => {
+  const removeQuantity = (produto) => {
     const copyQuantity = [...quantity];
 
     const n = copyQuantity.map((i) => {
-      if (i.id === productId) {
+      if (i.id === produto.id) {
         i.quantity -= 1;
       }
       return i;
     });
 
-    const item = quantity.find((i) => i.id === productId);
+    const item = quantity.find((i) => i.id === produto.id);
     if (item && item.quantity > 0) {
-      // item.quantity -= 1;
       setQuantity(n);
-      console.log('ifremove');
+      localStorage.setItem('cart', JSON.stringify(n));
     } else {
-      const filter = copyQuantity.filter((i) => i.id !== productId);
+      const filter = copyQuantity.filter((i) => i.id !== produto.id);
       setQuantity(filter);
-      console.log('elseremove');
-      // console.log(filter);
+      localStorage.setItem('cart', JSON.stringify(filter));
     }
   };
 
-  const inputValue = (productId, target) => {
+  const inputValue = (produto, target) => {
     const copyQuantity = [...quantity];
-    const item = quantity.find((i) => i.id === productId);
+    const item = quantity.find((i) => i.id === produto.id);
     if (!item) {
-      copyQuantity.push({ id: productId, quantity: Number(target) });
-      console.log('ifinput');
+      copyQuantity.push({ ...produto, quantity: Number(target) });
     } else {
       item.quantity = Number(target);
-      console.log('elseinput');
     }
     setQuantity(copyQuantity);
-    console.log(copyQuantity);
+    localStorage.setItem('cart', JSON.stringify(copyQuantity));
   };
 
   const sumCart = () => {
@@ -107,7 +100,7 @@ function ProductCard() {
           <button
             className="button"
             type="button"
-            onClick={ () => removeQuantity(item.id) }
+            onClick={ () => removeQuantity(item) }
             // disabled={ buttonDisabled }
             data-testid={ `customer_products__button-card-rm-item-${item.id}` }
           >
@@ -117,7 +110,7 @@ function ProductCard() {
            */}
           <input
             type="text"
-            onChange={ ({ target }) => inputValue(item.id, target.value) }
+            onChange={ ({ target }) => inputValue(item, target.value) }
             // value={ quantity }
             value={ quantity.find((i) => i.id === item.id)?.quantity
               ? quantity.find((i) => i.id === item.id)?.quantity : 0 }
@@ -126,7 +119,7 @@ function ProductCard() {
           <button
             className="button"
             type="button"
-            onClick={ () => addQuantity(item.id) }
+            onClick={ () => addQuantity(item) }
             data-testid={ `customer_products__button-card-add-item-${item.id}` }
           >
             +

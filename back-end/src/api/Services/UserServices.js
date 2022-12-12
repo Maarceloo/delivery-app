@@ -29,7 +29,16 @@ const postUser = async ({ name, email, password }) => {
     return { status: null, message: createUser };
 };
 
+const getSellers = async () => {
+    const getSeller = await User.findAll({ where: { role: 'seller' } });
+    if (!getSeller) {
+        return { status: 404, message: 'Sellers Not Found' };
+    }
+    return { status: null, message: getSeller };
+};
+
 module.exports = {
     login,
     postUser,
+    getSellers,
 };

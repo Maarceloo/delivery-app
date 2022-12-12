@@ -1,7 +1,7 @@
 import React, { useContext, useState } from 'react';
 import { useHistory } from 'react-router-dom';
 import Context from '../Context/LoginContext';
-import { postLogin } from '../Service/request';
+import { postData } from '../Service/request';
 
 function Login() {
   const [login, setLogin] = useState(false);
@@ -20,7 +20,7 @@ function Login() {
 
   const handleClick = async () => {
     try {
-      const infoLogin = await postLogin('login', objLogin);
+      const infoLogin = await postData('login', objLogin);
       setLogin(false);
       console.log(infoLogin);
       localStorage.setItem('user', JSON.stringify(infoLogin));
