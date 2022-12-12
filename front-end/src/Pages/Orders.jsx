@@ -12,7 +12,7 @@ function Orders() {
     const user = JSON.parse(localStorage.getItem('user'));
     setRole(user.role);
     console.log(role, 'user'); 
-    setUserId(user.id); 
+    setUserId(user.id);
     // const sales = await getData('seller/orders');
     // console.log(role, 'role');
     // if (role === 'seller') {
@@ -32,25 +32,29 @@ function Orders() {
     return dateFormated;
   };
 
-  // async function getSales() {
-  //   const sales = await getData('seller/orders');
-  //   console.log(role);
-  //   if (role === 'seller') {
-  //     const filteredSales = sales.filter((item) => item.sellerId === userId)
-  //     // console.log(filteredSales, 'filteredSales'); 
-  //     setSales(filteredSales); 
-  //   }
-  //   if (role === 'customer') {
-  //     const filteredSales = sales.filter((item) => item.userId === userId)
-  //     setSales(filteredSales);
-  //   }
-  // }
+  async function getSales() {
+    const sales = await getData('seller/orders');
+    console.log(role);
+    if (role === 'seller') {
+      const filteredSales = sales.filter((item) => item.sellerId === userId)
+      // console.log(filteredSales, 'filteredSales'); 
+      setSales(filteredSales); 
+    }
+    if (role === 'customer') {
+      const filteredSales = sales.filter((item) => item.userId === userId)
+      setSales(filteredSales);
+    }
+  }
 
   useEffect(() => {
     getRole();  
     // getSales();
 
   }, []);
+
+  useEffect(() => {  
+    getSales();
+  }, [role]);
 
   return (
     <div>
