@@ -24,7 +24,16 @@ const postUser = async (req, res) => {
   return res.status(201).json(message);
 };
 
+const getSellers = async (_req, res) => {
+  const { status, message } = await userServices.getSellers();
+  if (status) {
+    return res.status(status).json(message);
+  }
+  return res.status(200).json(message);
+};
+
 module.exports = {
   login,
   postUser,
+  getSellers,
 };

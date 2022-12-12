@@ -1,23 +1,22 @@
 import React, { useEffect, useState } from 'react';
+import { getData } from '../Service/request';
 
 function CheckoutCard() {
   const [cartProducts, setCartProducts] = useState([]);
-
+  const [seller, setSeller] = useState([]);
   function getCart() {
     const cart = JSON.parse(localStorage.getItem('cart'));
     setCartProducts(cart);
   }
 
+  async function getSellers() {
+    const seller = await getData('/users');
+    setSeller(seller);
+  }
+
   useEffect(() => {
     getCart();
   }, []);
-
-  // const removeProductCart = (item) => {
-  //   const copyCartProducts = [...cartProducts];
-  //   copyCartProducts.splice(item, 1);
-  //   setCartProducts(copyCartProducts);
-  //   // localStorage.setItem('cart', JSON.stringify(copyCartProducts));
-  // };
 
   const removeItemCart = (item) => {
     const copyCartProducts = [...cartProducts];
@@ -35,7 +34,7 @@ function CheckoutCard() {
 
   const dataTestid = 'customer_checkout__element-order-table-';
 
-  if (!cartProducts.length) return <p>Loading</p>;
+  if (!cartProducts.length) return <p>Loading...</p>;
 
   return (
     <div>
