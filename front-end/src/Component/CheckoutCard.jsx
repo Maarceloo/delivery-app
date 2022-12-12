@@ -10,12 +10,14 @@ function CheckoutCard() {
   }
 
   async function getSellers() {
-    const seller = await getData('/users');
-    setSeller(seller);
+    const sell = await getData('/users');
+    setSeller(sell);
+    console.log(sell);
   }
 
   useEffect(() => {
     getCart();
+    getSellers();
   }, []);
 
   const removeItemCart = (item) => {
@@ -91,7 +93,10 @@ function CheckoutCard() {
             name="seller"
             id="seller"
           >
-            <option value="1">Vendedora 1</option>
+            { seller.map((sell) => (
+              <option key={ sell.id } value={ sell.id }>{sell.name}</option>
+            ), [])}
+
           </select>
         </label>
         <label htmlFor="address">
