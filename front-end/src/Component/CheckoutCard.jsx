@@ -58,7 +58,7 @@ function CheckoutCard() {
     const objSale = {
       userId: userObj.id,
       sellerId,
-      status: 'pendente',
+      status: 'Pendente',
       totalPrice: totalProducts(),
       deliveryAddress: address,
       deliveryNumber: number,

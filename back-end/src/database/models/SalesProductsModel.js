@@ -28,7 +28,7 @@ const SalesProductsModelSchema = (sequelize, DataTypes) => {
       },
     },
     {
-      tableName: "salesProducts",
+      tableName: "sales_products",
       timestamps: false,
       underscored: true,
     }
