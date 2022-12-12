@@ -5,7 +5,6 @@ function NavBar() {
   const [username, setUsername] = useState([]);
   function getUser() {
     const user = JSON.parse(localStorage.getItem('user'));
-    console.log(user);
     setUsername(user);
   }
 
@@ -18,15 +17,15 @@ function NavBar() {
       <nav>
 
         {
-          username.role === 'seller' ? (() => {
+          username.role === 'seller' ? (
             <Link
               to="/seller/orders"
               data-testid="seller_products__element-navbar-link-orders"
             >
               Pedidos
-            </Link>;
-          })
-            : (() => {
+            </Link>
+          )
+            : (
               <>
                 <Link
                   to="/products"
@@ -41,8 +40,8 @@ function NavBar() {
                   Meus Pedidos
                 </Link>
 
-              </>;
-            })
+              </>
+            )
         }
 
         <h1

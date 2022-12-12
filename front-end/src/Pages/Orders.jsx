@@ -77,13 +77,13 @@ function Orders() {
                   {`R$ ${item.totalPrice.replace(/\./, ',')}`}
 
                 </p>
-                {role === 'seller' ? (() => {
+                {role === 'seller' ? (
                   <p
                     data-testid={ `seller_orders__element-card-address-${item.id}` }
                   >
                     {item.deliveryAddress}
-                  </p>;
-                })
+                  </p>
+                )
                   : <p />}
               </Link>
             </div>
