@@ -13,4 +13,6 @@ userRoutes.post('/register',
     userMiddlewares.nameValidate, 
     userControllers.postUser);
 
+// userRoutes.get('users', userControllers.getAll);
+
 module.exports = userRoutes;
