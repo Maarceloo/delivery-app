@@ -1,7 +1,7 @@
 import React, { useContext, useState } from 'react';
 import { useHistory } from 'react-router-dom';
 import RegisterContext from '../Context/RegisterContext';
-import { postLogin } from '../Service/request';
+import { postData } from '../Service/request';
 
 function Register() {
   const { email,
@@ -27,7 +27,7 @@ function Register() {
 
   const handleClickRegister = async () => {
     try {
-      await postLogin('register', objRegister);
+      await postData('register', objRegister);
       setRegister(false);
       history.push('/customer/products');
     } catch (error) {

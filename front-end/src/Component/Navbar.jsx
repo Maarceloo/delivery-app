@@ -5,7 +5,6 @@ function NavBar() {
   const [username, setUsername] = useState([]);
   function getUser() {
     const user = JSON.parse(localStorage.getItem('user'));
-    console.log(user);
     setUsername(user);
   }
 
