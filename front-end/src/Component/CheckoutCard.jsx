@@ -1,12 +1,20 @@
 import React, { useEffect, useState } from 'react';
-import { getData } from '../Service/request';
+import { useHistory } from 'react-router-dom';
+import { getData, postData } from '../Service/request';
 
 function CheckoutCard() {
+  const history = useHistory();
   const [cartProducts, setCartProducts] = useState([]);
+  const [userObj, setUserObj] = useState();
+  const [sellerId, setSellerId] = useState(2);
+  const [address, setAddress] = useState();
+  const [number, setNumber] = useState();
   const [seller, setSeller] = useState([]);
-  function getCart() {
+  function getLocalStorage() {
     const cart = JSON.parse(localStorage.getItem('cart'));
+    const user = JSON.parse(localStorage.getItem('user'));
     setCartProducts(cart);
+    setUserObj(user);
   }
 
   async function getSellers() {
@@ -16,7 +24,7 @@ function CheckoutCard() {
   }
 
   useEffect(() => {
-    getCart();
+    getLocalStorage();
     getSellers();
   }, []);
 
@@ -31,8 +39,42 @@ function CheckoutCard() {
     const copyCartProducts = [...cartProducts];
     const total = copyCartProducts
       .reduce((acc, curr) => acc + curr.quantity * curr.price, 0);
-    return total;
+    return total.toFixed(2);
   };
+
+  const saveSeller = (id) => {
+    setSellerId(id);
+  };
+
+  const saveAddress = (deliveryAddress) => {
+    setAddress(deliveryAddress);
+  };
+
+  const saveNumber = (deliveryNumber) => {
+    setNumber(deliveryNumber);
+  };
+
+  async function postSales() {
+    const objSale = {
+      userId: userObj.id,
+      sellerId,
+      status: 'pendente',
+      totalPrice: totalProducts(),
+      deliveryAddress: address,
+      deliveryNumber: number,
+    };
+    // console.log(objSale);
+    const sale = await postData('customer/orders', objSale, userObj.token);
+    cartProducts.map((itens) => {
+      const obj = {
+        saleId: sale.id,
+        productId: itens.id,
+        quantity: itens.quantity,
+      };
+      return postData('sales/products', obj, userObj.token);
+    });
+    history.push(`/customer/orders/${sale.id}`);
+  }
 
   const dataTestid = 'customer_checkout__element-order-table-';
 
@@ -82,7 +124,7 @@ function CheckoutCard() {
       </table>
       <h2 data-testid="customer_checkout__element-order-total-price">
         Total da compra: R$
-        {` ${totalProducts().toFixed(2).replace(/\./, ',')} `}
+        {` ${totalProducts().replace(/\./, ',')} `}
       </h2>
       <h1>Detalhes e Endereço para Entrega</h1>
       <form>
@@ -92,9 +134,11 @@ function CheckoutCard() {
             data-testid="customer_checkout__select-seller"
             name="seller"
             id="seller"
+            onChange={ ({ target }) => { saveSeller(target.value); } }
           >
             { seller.map((sell) => (
               <option key={ sell.id } value={ sell.id }>{sell.name}</option>
+
             ), [])}
 
           </select>
@@ -104,6 +148,7 @@ function CheckoutCard() {
           <input
             type="text"
             data-testid="customer_checkout__input-address"
+            onChange={ ({ target }) => { saveAddress(target.value); } }
             name="address"
             id="address"
           />
@@ -113,13 +158,14 @@ function CheckoutCard() {
           <input
             type="text"
             data-testid="customer_checkout__input-address-number"
+            onChange={ ({ target }) => { saveNumber(target.value); } }
             name="number"
             id="number"
           />
         </label>
         <button
           type="button"
-          onClick={ () => {} }
+          onClick={ () => { postSales(); } }
           data-testid="customer_checkout__button-submit-order"
         >
           Finalizar Pedido

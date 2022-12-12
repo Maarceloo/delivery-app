@@ -9,8 +9,10 @@ export const getData = async (endpoint) => {
   return data;
 };
 
-export const postLogin = async (endpoint, body) => {
-  const { data } = await request.post(endpoint, body);
+export const postData = async (endpoint, body, token) => {
+  const { data } = await request.post(endpoint, body, { headers: {
+    Authorization: token,
+  } });
   return data;
 };
 export default request;

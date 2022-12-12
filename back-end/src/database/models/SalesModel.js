@@ -22,7 +22,7 @@ const SalesModelSchema = (sequelize, DataTypes) => {
         type: DataTypes.DECIMAL(9, 2),
         allowNull: false,
       },
-      deliveryAdress: {
+      deliveryAddress: {
         type: DataTypes.STRING(100),
         allowNull: false,
       },
