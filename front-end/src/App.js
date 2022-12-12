@@ -22,7 +22,8 @@ class App extends Component {
             <Route exact path="/customer/checkout" component={ Checkout } />
             <Route exact path="/seller/orders" component={ Orders } />
             <Route exact path="/customer/orders" component={ Orders } />
-            <Route exact path="/seller/order/details" component={ OrderDetails } />
+            <Route exact path="/seller/order/:id" component={ OrderDetails } />
+            <Route exact path="/customer/order/:id" component={ OrderDetails } />
           </Switch>
         </RegisterProvider>
       </LoginProvider>

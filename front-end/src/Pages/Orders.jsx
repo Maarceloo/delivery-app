@@ -49,7 +49,7 @@ function Orders() {
         {
           sales.map((item) => (
             <div key={ item.id }>
-              <Link color="black" to="/seller/orders/details">
+              <Link color="black" to={ `/${role}/order/${item.id}` }>
                 <p data-testid={ `seller_orders__element-order-id-${item.id}` }>
                   Pedido
                   {' '}
