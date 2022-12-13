@@ -49,43 +49,43 @@ function Orders() {
         {
           sales.map((item) => (
             <div key={ item.id }>
-              <Link color="black" to={ `/${role}/order/${item.id}` }>
-                <p data-testid={ `seller_orders__element-order-id-${item.id}` }>
+              <Link color="black" to={ `/${role}/orders/${item.id}` }>
+                <p data-testid={ `${role}_orders__element-order-id-${item.id}` }>
                   Pedido
                   {' '}
                   {item.id}
                 </p>
-                <h3
-                  data-testid={
-                    `seller_orders__element-delivery-status-${item.id}`
-                  }
-                >
-                  {item.status}
-
-                </h3>
-                <p
-                  data-testid={
-                    `seller_orders__element-order-date-${item.id}`
-                  }
-                >
-                  {dateFormat(item.saleDate)}
-
-                </p>
-                <p
-                  data-testid={ `seller_orders__element-card-price-${item.id}` }
-                >
-                  {`R$ ${item.totalPrice.replace(/\./, ',')}`}
-
-                </p>
-                {role === 'seller' ? (
-                  <p
-                    data-testid={ `seller_orders__element-card-address-${item.id}` }
-                  >
-                    {item.deliveryAddress}
-                  </p>
-                )
-                  : <p />}
               </Link>
+              <h3
+                data-testid={
+                  `${role}_orders__element-delivery-status-${item.id}`
+                }
+              >
+                {item.status}
+
+              </h3>
+              <p
+                data-testid={
+                  `${role}_orders__element-order-date-${item.id}`
+                }
+              >
+                {dateFormat(item.saleDate)}
+
+              </p>
+              <p
+                data-testid={ `${role}_orders__element-card-price-${item.id}` }
+              >
+                {`R$ ${item.totalPrice.replace(/\./, ',')}`}
+
+              </p>
+              {role === 'seller' ? (
+                <p
+                  data-testid={ `seller_orders__element-card-address-${item.id}` }
+                >
+                  {item.deliveryAddress}
+                </p>
+              )
+                : <p />}
             </div>
           ))
         }
