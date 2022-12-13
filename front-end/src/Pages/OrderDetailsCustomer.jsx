@@ -1,12 +1,12 @@
 import React from 'react';
 import NavBar from '../Component/Navbar';
-import OrderDetail from '../Component/OrderDetail';
+import OrderDetailCustomer from '../Component/OrderDetailCustomer';
 
 function OrderDetails() {
   return (
     <>
       <NavBar />
-      <OrderDetail />
+      <OrderDetailCustomer />
     </>
   );
 }

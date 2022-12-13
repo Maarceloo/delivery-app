@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { getData } from '../Service/request';
 
-function OrderDetail() {
+function OrderDetailSeller() {
   const { id } = useParams();
   const [products, setProducts] = useState([]);
   const [seller, setSeller] = useState([]);
@@ -22,8 +22,8 @@ function OrderDetail() {
     getProductsAndSeller();
   }, []);
 
-  const dataTestid = 'customer_order_details__element-order-table-';
-  const dataTestid2 = 'customer_order_details__element-order-details-label-';
+  const dataTestid = 'seller_order_details__element-order-table-';
+  const dataTestid2 = 'seller_order_details__element-order-details-label-';
 
   if (!products.length && !seller.length) return <p>Loading...</p>;
 
@@ -32,7 +32,6 @@ function OrderDetail() {
       <h1> Detalhe do pedido</h1>
       <section>
         <h1 data-testid={ `${dataTestid2}order-id` }>{`PEDIDO ${id}`}</h1>
-        <h1 data-testid={ `${dataTestid2}seller-name` }>{`${seller}`}</h1>
         <h1 data-testid={ `${dataTestid2}order-date` }>
           {`${new Date(products[0].Sales.saleDate).toLocaleDateString('pt-br')}`}
         </h1>
@@ -40,11 +39,18 @@ function OrderDetail() {
           {`${products[0].Sales.status}`}
         </h1>
         <button
-          data-testid="customer_order_details__button-delivery-check"
           type="button"
-          disabled={ `${products[0].Sales.status !== 'entregue'}` }
+          data-testid="seller_order_details__button-preparing-check"
+          disabled={ products[0].Sales.status !== 'Pendente' }
         >
-          Marcar Como Entregue
+          Preparar Pedido!
+        </button>
+        <button
+          data-testid="seller_order_details__button-dispatch-check"
+          type="button"
+          disabled={ products[0].Sales.status !== 'Preparando' }
+        >
+          Saiu para Entrega!
         </button>
       </section>
       <table>
@@ -81,7 +87,7 @@ function OrderDetail() {
           ))}
         </tbody>
       </table>
-      <h2 data-testid="customer_order_details__element-order-total-price">
+      <h2 data-testid="seller_order_details__element-order-total-price">
         Total da compra: R$
         {` ${products[0].Sales.totalPrice.replace(/\./, ',')} `}
       </h2>
@@ -89,4 +95,4 @@ function OrderDetail() {
   );
 }
 
-export default OrderDetail;
+export default OrderDetailSeller;
