@@ -40,8 +40,12 @@ function Login() {
     if (user) {
       if (user.role === 'seller') {
         history.push('/seller/orders');
-      } else {
+      } 
+      if (user.role === 'customer') {
         history.push('/customer/products');
+      }
+      if (user.role === 'admin') {
+        history.push('/admin/manage')
       }
     }
   };
