@@ -1,6 +1,13 @@
+import React from 'react';
+import NavBar from '../Component/Navbar';
+import OrderDetail from '../Component/OrderDetail';
+
 function OrderDetails() {
   return (
-    <h1>Order Details</h1>
+    <>
+      <NavBar />
+      <OrderDetail />
+    </>
   );
 }
 

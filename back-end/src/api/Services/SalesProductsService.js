@@ -21,4 +21,21 @@ const getAllSalesProducts = async () => {
   return data;
 };
 
+// const getSalesProductsById = async (id) => {
+//   const data = await salesProducts.findAll({
+//     where: { saleId: id },
+//     include: [
+//       {
+//         model: Product,
+//         as: 'products',
+//       },
+//       {
+//         model: Sales,
+//         as: 'Sales',
+//       },
+//     ],
+//   });
+//   return data;
+// };
+
 module.exports = { postSalesProducts, getAllSalesProducts };
