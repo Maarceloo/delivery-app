@@ -1,11 +1,19 @@
 import React from 'react';
+import { useEffect } from 'react';
+import { useState } from 'react';
 import NavBar from '../Component/Navbar';
+import { deleteData, getData, postData } from '../Service/request';
 
 function AdminPage() {
-    const [name, setName] = useState();
-    const [email, setEmail] = useState();
-    const [password, setPassword] = useState();
+    const [name, setName] = useState('');
+    const [email, setEmail] = useState('');
+    const [password, setPassword] = useState('');
+    const [role, setRole] = useState('Vendedor');
+    const [token, setToken] = useState('');
     const [register, setRegister] = useState(false);
+    const [allUsers, setAllUsers] = useState([]);
+    const [hasDelete, setHasDelete] = useState(false)
+    const objRegister = { name, email, password, role };
 
     const disabledRegisterBttn = () => {
         const maxName = 12;
@@ -20,14 +28,56 @@ function AdminPage() {
     
       const handleClickRegister = async () => {
         try {
-            await postData('register', objRegister);
+            await postData('register/admin', objRegister, token);
             setRegister(false);
-            history.push('/customer/products');
+            if (hasDelete) {
+                setHasDelete(false)
+            } else {
+                setHasDelete(true)
+            }
           } catch (error) {
             setRegister(true);
             console.log('erro', error);
           }
       };
+
+      const getToken = () => {
+        const user = JSON.parse(localStorage.getItem('user'));
+        setToken(user.token);
+      }
+
+      const getUsers = async () => {
+        const users = await getData('users/admin')
+        setAllUsers(users)
+      }
+
+      const deleteUser = async (id) => {
+        console.log(typeof id);
+        const test = id.toString()
+        console.log(typeof test);
+
+        try {
+            await deleteData('users/admin', test)
+            if (hasDelete) {
+                setHasDelete(false)
+            } else {
+                setHasDelete(true)
+            }
+        } catch(error) {
+            console.log(error.message);
+        }
+        
+        
+      }
+
+      useEffect(() => {
+        getToken();
+        getUsers();
+      }, [])
+
+      useEffect(() => {
+        getUsers();
+      }, [hasDelete])
 
   return (
     <div>
@@ -40,8 +90,7 @@ function AdminPage() {
         <input
           type="text"
           name="name"
-          value={ name }
-          data-testid="common_register__input-name"
+          data-testid="admin_manage__input-name"
           placeholder="Digite seu Nome"
           onChange={ ({ target }) => setName(target.value) }
         />
@@ -51,8 +100,7 @@ function AdminPage() {
         <input
           type="email"
           name="email"
-          value={ email }
-          data-testid="common_register__input-email"
+          data-testid="admin_manage__input-email"
           placeholder="Digite seu Email"
           onChange={ ({ target }) => setEmail(target.value) }
         />
@@ -62,8 +110,7 @@ function AdminPage() {
         <input
           type="password"
           name="name"
-          value={ password }
-          data-testid="common_register__input-password"
+          data-testid="admin_manage__input-password"
           placeholder="Digite sua Senha"
           onChange={ ({ target }) => setPassword(target.value) }
         />
@@ -71,10 +118,10 @@ function AdminPage() {
       <label htmlFor='Tipo'>
         Tipo
         <select 
-            data-testid="customer_checkout__select-seller"
+            data-testid="admin_manage__select-role"
             name="seller"
             id="seller"
-            onChange={ ({ target }) => { saveSeller(target.value); } }
+            onChange={ ({ target }) => { setRole(target.value); } }
         >
             <option value={'Vendedor'}>Vendedor</option>
             <option value={'Cliente'}>Cliente</option>
@@ -83,15 +130,51 @@ function AdminPage() {
       </label>
       <button
         type="button"
-        data-testid="common_register__button-register"
+        data-testid="admin_manage__button-register"
         disabled={ disabledRegisterBttn() }
         onClick={ handleClickRegister }
       >
         Cadastrar
       </button>
       {register
-    && <p data-testid="common_register__element-invalid_register">Usuário existente!</p> }
+    && <p data-testid="admin_manage__element-invalid-register">Usuário existente!</p> }
     </form>
+
+    <h1>Lista de Usuários</h1>
+    <table>
+        <thead>
+            <tr>
+                <th>Item</th>
+                <th>Nome</th>
+                <th>E-mail</th>
+                <th>Tipo</th>
+                <th>Excluir</th>              
+            </tr>
+        </thead>
+        <tbody>
+            {
+                allUsers && allUsers.map((item, index) => (
+                    <tr key={index}>
+                        <td data-testid={`admin_manage__element-user-table-item-number-${item.id}`}>{index +1}</td>
+                        <td data-testid={`admin_manage__element-user-table-name-${item.id}`}>{item.name}</td>
+                        <td data-testid={`admin_manage__element-user-table-email-${item.id}`}>{item.email}</td>
+                        <td data-testid={`admin_manage__element-user-table-role-${item.id}`}>{item.role}</td>
+                        <button 
+                            data-testid={`admin_manage__element-user-table-remove-${item.id}`} 
+                            type='button' 
+                            onClick={() => deleteUser(item.id)}
+                        >
+                            Excluir
+                        </button>
+                    </tr>
+                    
+                ))
+            }
+        </tbody>
+    </table>
+    <tr>
+        
+    </tr>
     </div>
   );
 }

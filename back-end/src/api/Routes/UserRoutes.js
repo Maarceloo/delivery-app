@@ -25,6 +25,6 @@ userRoutes.post('/register/admin',
     userMiddlewares.nameValidate, 
     userControllers.adminPostUser);
 
-userRoutes.delete('/users/admin', jwtValidate, userControllers.deleteUser);
+userRoutes.delete('/users/admin', userControllers.deleteUser);
 
 module.exports = userRoutes;
