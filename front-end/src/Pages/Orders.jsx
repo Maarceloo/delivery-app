@@ -55,37 +55,38 @@ function Orders() {
                   {' '}
                   {item.id}
                 </p>
-              </Link>
-              <h3
-                data-testid={
-                  `${role}_orders__element-delivery-status-${item.id}`
-                }
-              >
-                {item.status}
 
-              </h3>
-              <p
-                data-testid={
-                  `${role}_orders__element-order-date-${item.id}`
-                }
-              >
-                {dateFormat(item.saleDate)}
-
-              </p>
-              <p
-                data-testid={ `${role}_orders__element-card-price-${item.id}` }
-              >
-                {`R$ ${item.totalPrice.replace(/\./, ',')}`}
-
-              </p>
-              {role === 'seller' ? (
-                <p
-                  data-testid={ `seller_orders__element-card-address-${item.id}` }
+                <h3
+                  data-testid={
+                    `${role}_orders__element-delivery-status-${item.id}`
+                  }
                 >
-                  {item.deliveryAddress}
+                  {item.status}
+
+                </h3>
+                <p
+                  data-testid={
+                    `${role}_orders__element-order-date-${item.id}`
+                  }
+                >
+                  {dateFormat(item.saleDate)}
+
                 </p>
-              )
-                : <p />}
+                <p
+                  data-testid={ `${role}_orders__element-card-price-${item.id}` }
+                >
+                  {`R$ ${item.totalPrice.replace(/\./, ',')}`}
+
+                </p>
+                {role === 'seller' ? (
+                  <p
+                    data-testid={ `seller_orders__element-card-address-${item.id}` }
+                  >
+                    {item.deliveryAddress}
+                  </p>
+                )
+                  : <p />}
+              </Link>
             </div>
           ))
         }

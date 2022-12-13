@@ -10,4 +10,10 @@ const getAllSalesProducts = async (_req, res) => {
   return res.status(200).json(data);
 };
 
-module.exports = { postSalesProducts, getAllSalesProducts };
+const getSalesProductsById = async (req, res) => {
+  const { id } = req.params;
+  const data = await service.getSalesProductsById(id);
+  return res.status(200).json(data);
+};
+
+module.exports = { postSalesProducts, getAllSalesProducts, getSalesProductsById };
