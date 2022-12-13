@@ -58,10 +58,19 @@ const getUsers = async () => {
     return { status: null, message: getAllUsers };
 };
 
+const deleteUser = async (id) => {
+    const delUser = await User.destroy({ where: { id } });
+    if (!delUser) {
+        return { status: 404, message: 'Users Not Found' };
+    }
+    return { status: null, message: delUser };
+};
+
 module.exports = {
     login,
     postUser,
     getSellers,
     adminPostUser,
     getUsers,
+    deleteUser,
 };
