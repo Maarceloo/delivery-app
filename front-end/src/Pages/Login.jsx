@@ -43,11 +43,11 @@ function Login() {
     const user = JSON.parse(localStorage.getItem('user'));
     if (user) {
       if (user.role === 'administrator') {
-        history.push('/admin/manage')
+        history.push('/admin/manage');
       }
       if (user.role === 'seller') {
         history.push('/seller/orders');
-      } 
+      }
       if (user.role === 'customer') {
         history.push('/customer/products');
       }

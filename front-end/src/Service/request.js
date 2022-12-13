@@ -17,8 +17,8 @@ export const postData = async (endpoint, body, token) => {
 };
 
 export const deleteData = async (endpoint, id) => {
-  const { data } = await request.delete(endpoint, {data: {id}});
+  const { data } = await request.delete(endpoint, { data: { id } });
   return data;
-}
+};
 
 export default request;
