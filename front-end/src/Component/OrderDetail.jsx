@@ -1,6 +1,23 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
+import { useParams } from 'react-router-dom';
+import { getData } from '../Service/request';
 
 function OrderDetail() {
+  const { id } = useParams();
+  // const [getId] = useState(id);
+  const [products, setProducts] = useState([]);
+
+  async function getProducts() {
+    console.log(id);
+    const data = await getData('sales/products');
+    console.log(products);
+    setProducts(data);
+  }
+
+  useEffect(() => {
+    getProducts();
+  }, []);
+
   return (
     <>
       <h1> Detalhe do pedido</h1>
@@ -11,7 +28,7 @@ function OrderDetail() {
         <h1>status do pedido</h1>
         <button type="button">pedido entregue</button>
       </section>
-      <table>
+      {/* <table>
         <thead>
           <tr>
             <th>Item</th>
@@ -22,7 +39,7 @@ function OrderDetail() {
           </tr>
         </thead>
         <tbody>
-          {cartProducts.map((item, index) => (
+          {products.map((item, index) => (
             <tr key={ item.id }>
               <td data-testid={ `${dataTestid}item-number-${index}` }>
                 {index + 1 }
@@ -44,7 +61,7 @@ function OrderDetail() {
       <h2 data-testid="customer_checkout__element-order-total-price">
         Total da compra: R$
         {` ${totalProducts().replace(/\./, ',')} `}
-      </h2>
+      </h2> */}
     </>
   );
 }

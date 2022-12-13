@@ -2,7 +2,7 @@ const { Router } = require('express');
 const {
   postSalesProducts,
   getAllSalesProducts,
-  // getSalesProductsById,
+  getSalesProductsById,
 } = require('../Controllers/SalesProductsController');
 const { jwtValidate } = require('../Utils/Jwt');
 
@@ -12,6 +12,6 @@ SalesProductsRoute.post('/sales/products', jwtValidate, postSalesProducts);
 
 SalesProductsRoute.get('/sales/products', getAllSalesProducts);
 
-// SalesProductsRoute.get('/sales/products/:id', getSalesProductsById);
+SalesProductsRoute.get('/sales/products/:id', getSalesProductsById);
 
 module.exports = SalesProductsRoute;

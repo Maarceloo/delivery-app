@@ -20,7 +20,6 @@ function CheckoutCard() {
   async function getSellers() {
     const sell = await getData('/users');
     setSeller(sell);
-    console.log(sell);
   }
 
   useEffect(() => {
