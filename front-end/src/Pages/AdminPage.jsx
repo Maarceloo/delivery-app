@@ -6,7 +6,7 @@ function AdminPage() {
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const [role, setRole] = useState('Vendedor');
+  const [role, setRole] = useState('seller');
   const [token, setToken] = useState('');
   const [register, setRegister] = useState(false);
   const [allUsers, setAllUsers] = useState([]);
@@ -119,9 +119,9 @@ function AdminPage() {
             id="seller"
             onChange={ ({ target }) => { setRole(target.value); } }
           >
-            <option value="Vendedor">Vendedor</option>
-            <option value="Cliente">Cliente</option>
-            <option value="Administrador">Administrador</option>
+            <option value="seller">Vendedor</option>
+            <option value="customer">Cliente</option>
+            <option value="administrator">Administrador</option>
           </select>
         </label>
         <button
