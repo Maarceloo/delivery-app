@@ -53,4 +53,12 @@ const getAllSales = async () => {
   return posts;
 };
 
-module.exports = { getAllSales, postSales, getIdSale };
+const salesUpdate = async (id, status) => {
+  const sale = await Sales.update({ status }, { where: { id } });
+  if (sale) {
+    return sale;
+  }
+  return undefined;
+};
+
+module.exports = { getAllSales, postSales, getIdSale, salesUpdate };

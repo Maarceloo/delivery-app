@@ -17,4 +17,15 @@ const getSaleById = async (req, res) => {
   return res.status(200).json(data);
 };
 
-module.exports = { postSales, getAllSales, getSaleById };
+const salesUpdate = async (req, res) => {
+  const { id, status } = req.body;
+  console.log(id, status);
+  try {
+    const result = await service.salesUpdate(id, status);
+    return res.status(201).json({ result });
+  } catch (err) {
+    res.status(401).json({});
+  }
+};
+
+module.exports = { postSales, getAllSales, getSaleById, salesUpdate };

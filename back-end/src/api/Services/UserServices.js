@@ -28,6 +28,19 @@ const postUser = async ({ name, email, password }) => {
     }
     return { status: null, message: createUser };
 };
+const adminPostUser = async ({ name, email, password, role }) => {
+    const newPassword = md5(password);
+    const getUserByEmail = await User.findOne({ where: { email } });
+    const getUserByName = await User.findOne({ where: { name } });
+    if (getUserByEmail || getUserByName) {
+        return { status: 409, message: 'User Alredy Exist' };
+    }
+    const createUser = await User.create({ name, email, password: newPassword, role });
+    if (!createUser) {
+        return { status: 400, message: 'User Not Created' };
+    }
+    return { status: null, message: createUser };
+};
 
 const getSellers = async () => {
     const getSeller = await User.findAll({ where: { role: 'seller' } });
@@ -37,8 +50,27 @@ const getSellers = async () => {
     return { status: null, message: getSeller };
 };
 
+const getUsers = async () => {
+    const getAllUsers = await User.findAll();
+    if (!getAllUsers) {
+        return { status: 404, message: 'Users Not Found' };
+    }
+    return { status: null, message: getAllUsers };
+};
+
+const deleteUser = async (id) => {
+    const delUser = await User.destroy({ where: { id } });
+    if (!delUser) {
+        return { status: 404, message: 'Users Not Found' };
+    }
+    return { status: null, message: delUser };
+};
+
 module.exports = {
     login,
     postUser,
     getSellers,
+    adminPostUser,
+    getUsers,
+    deleteUser,
 };

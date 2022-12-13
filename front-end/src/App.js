@@ -9,6 +9,7 @@ import Checkout from './Pages/Checkout';
 import Orders from './Pages/Orders';
 import OrderDetailsCustomer from './Pages/OrderDetailsCustomer';
 import OrderDetailsSeller from './Pages/OrderDetailsSeller';
+import AdminPage from './Pages/AdminPage';
 
 class App extends Component {
   render() {
@@ -25,6 +26,7 @@ class App extends Component {
             <Route exact path="/customer/orders" component={ Orders } />
             <Route exact path="/customer/orders/:id" component={ OrderDetailsCustomer } />
             <Route exact path="/seller/orders/:id" component={ OrderDetailsSeller } />
+            <Route exact path="/admin/manage" component={ AdminPage } />
           </Switch>
         </RegisterProvider>
       </LoginProvider>
