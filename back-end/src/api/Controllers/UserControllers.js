@@ -40,9 +40,18 @@ const getSellers = async (_req, res) => {
   return res.status(200).json(message);
 };
 
+const getUsers = async (_req, res) => {
+  const { status, message } = await userServices.getUsers();
+  if (status) {
+    return res.status(status).json(message);
+  }
+  return res.status(200).json(message);
+};
+
 module.exports = {
   login,
   postUser,
   getSellers,
   adminPostUser,
+  getUsers,
 };

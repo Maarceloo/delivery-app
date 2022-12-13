@@ -50,9 +50,18 @@ const getSellers = async () => {
     return { status: null, message: getSeller };
 };
 
+const getUsers = async () => {
+    const getAllUsers = await User.findAll();
+    if (!getAllUsers) {
+        return { status: 404, message: 'Users Not Found' };
+    }
+    return { status: null, message: getAllUsers };
+};
+
 module.exports = {
     login,
     postUser,
     getSellers,
     adminPostUser,
+    getUsers,
 };

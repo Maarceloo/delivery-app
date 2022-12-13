@@ -7,6 +7,8 @@ const userRoutes = Router();
 
 userRoutes.get('/users', userControllers.getSellers);
 
+userRoutes.get('/users/admin', userControllers.getUsers);
+
 userRoutes.post('/login', 
 userMiddlewares.emailValidate, userMiddlewares.passwordValidate, userControllers.login);
 
