@@ -1,11 +1,13 @@
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
-import { getData } from '../Service/request';
+import { getData, updateData } from '../Service/request';
 
 function OrderDetailSeller() {
   const { id } = useParams();
   const [products, setProducts] = useState([]);
   const [seller, setSeller] = useState([]);
+  const [token, setToken] = useState();
+  const [updated, setUpdated] = useState(false);
 
   async function getProductsAndSeller() {
     const data = await getData(`sales/products/${id}`);
@@ -18,9 +20,27 @@ function OrderDetailSeller() {
     setSeller(nameSeller[0].name);
   }
 
+  function getLocalStorage() {
+    const user = JSON.parse(localStorage.getItem('user'));
+    setToken(user.token);
+    console.log(token);
+  }
+
+  const updateUser = async (saleId, status) => {
+    console.log(saleId, status, token);
+    // const body = { saleId, status };
+    await updateData('seller/orders', saleId, status, token);
+    if (updated) {
+      setUpdated(false);
+    } else {
+      setUpdated(true);
+    }
+  };
+
   useEffect(() => {
     getProductsAndSeller();
-  }, []);
+    getLocalStorage();
+  }, [updated]);
 
   const dataTestid = 'seller_order_details__element-order-table-';
   const dataTestid2 = 'seller_order_details__element-order-details-label-';
@@ -33,7 +53,9 @@ function OrderDetailSeller() {
       <section>
         <h1 data-testid={ `${dataTestid2}order-id` }>{`PEDIDO ${id}`}</h1>
         <h1 data-testid={ `${dataTestid2}order-date` }>
-          {`${new Date(products[0].Sales.saleDate).toLocaleDateString('pt-br')}`}
+          {`${new Date(products[0].Sales.saleDate).toLocaleDateString(
+            'pt-br',
+          )}`}
         </h1>
         <h1 data-testid={ `${dataTestid2}delivery-status` }>
           {`${products[0].Sales.status}`}
@@ -42,6 +64,10 @@ function OrderDetailSeller() {
           type="button"
           data-testid="seller_order_details__button-preparing-check"
           disabled={ products[0].Sales.status !== 'Pendente' }
+          value="Preparando"
+          onClick={ ({ target }) => {
+            updateUser(products[0].Sales.id, target.value);
+          } }
         >
           Preparar Pedido!
         </button>
@@ -49,6 +75,10 @@ function OrderDetailSeller() {
           data-testid="seller_order_details__button-dispatch-check"
           type="button"
           disabled={ products[0].Sales.status !== 'Preparando' }
+          value="Em Trânsito"
+          onClick={ ({ target }) => {
+            updateUser(products[0].Sales.id, target.value);
+          } }
         >
           Saiu para Entrega!
         </button>

@@ -20,7 +20,7 @@ function NavBar() {
           username.role === 'seller' ? (
             <Link
               to="/seller/orders"
-              data-testid="seller_products__element-navbar-link-orders"
+              data-testid="customer_products__element-navbar-link-orders"
             >
               Pedidos
             </Link>
@@ -28,7 +28,7 @@ function NavBar() {
             : (
               <>
                 <Link
-                  to="/products"
+                  to="/customer/products"
                   data-testid="customer_products__element-navbar-link-products"
                 >
                   Produtos
