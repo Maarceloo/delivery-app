@@ -1,11 +1,13 @@
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
-import { getData } from '../Service/request';
+import { getData, updateData } from '../Service/request';
 
 function OrderDetailSeller() {
   const { id } = useParams();
   const [products, setProducts] = useState([]);
   const [seller, setSeller] = useState([]);
+  const [token, setToken] = useState();
+  const [updated, setUpdated] = useState(false)
 
   async function getProductsAndSeller() {
     const data = await getData(`sales/products/${id}`);
@@ -18,9 +20,25 @@ function OrderDetailSeller() {
     setSeller(nameSeller[0].name);
   }
 
+  function getLocalStorage() {
+    const user = JSON.parse(localStorage.getItem('user'));
+    setToken(user.token);
+  }
+
+  const updateUser = async (id, status) => {
+    const body = {id, status}
+     await updateData('seller/orders', body, token)
+     if(updated) {
+      setUpdated(false)
+     } else {
+      setUpdated(true)
+     }
+  }
+
   useEffect(() => {
     getProductsAndSeller();
-  }, []);
+    getLocalStorage()
+  }, [updated]);
 
   const dataTestid = 'seller_order_details__element-order-table-';
   const dataTestid2 = 'seller_order_details__element-order-details-label-';
@@ -42,6 +60,8 @@ function OrderDetailSeller() {
           type="button"
           data-testid="seller_order_details__button-preparing-check"
           disabled={ products[0].Sales.status !== 'Pendente' }
+          value="Preparando"
+          onClick={({target}) => {updateUser(target.value, products.Sales.id)}}
         >
           Preparar Pedido!
         </button>
@@ -49,6 +69,8 @@ function OrderDetailSeller() {
           data-testid="seller_order_details__button-dispatch-check"
           type="button"
           disabled={ products[0].Sales.status !== 'Preparando' }
+          value="A Caminho"
+          onClick={({target}) => {updateUser(target.value, products.Sales.id)}}
         >
           Saiu para Entrega!
         </button>

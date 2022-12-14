@@ -21,4 +21,11 @@ export const deleteData = async (endpoint, id) => {
   return data;
 };
 
+export const updateData = async (endpoint, body, token) => {
+  const { data } = await request.patch(endpoint, body, { headers: {
+    Authorization: token,
+  } });
+  return data;
+};
+
 export default request;
