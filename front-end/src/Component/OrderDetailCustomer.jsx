@@ -64,7 +64,7 @@ function OrderDetailCustomer() {
         <button
           data-testid="customer_order_details__button-delivery-check"
           type="button"
-          disabled={ products[0].Sales.status !== 'A Caminho' }
+          disabled={ products[0].Sales.status !== 'Em Trânsito' }
           value="Entregue"
           onClick={ ({ target }) => { updateUser(products[0].Sales.id, target.value); } }
         >

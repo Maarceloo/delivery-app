@@ -75,7 +75,7 @@ function OrderDetailSeller() {
           data-testid="seller_order_details__button-dispatch-check"
           type="button"
           disabled={ products[0].Sales.status !== 'Preparando' }
-          value="A Caminho"
+          value="Em Trânsito"
           onClick={ ({ target }) => {
             updateUser(products[0].Sales.id, target.value);
           } }
