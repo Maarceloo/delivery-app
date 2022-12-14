@@ -7,7 +7,7 @@ function OrderDetailCustomer() {
   const [products, setProducts] = useState([]);
   const [seller, setSeller] = useState([]);
   const [token, setToken] = useState();
-  const [updated, setUpdated] = useState(false)
+  const [updated, setUpdated] = useState(false);
 
   async function getProductsAndSeller() {
     const data = await getData(`sales/products/${id}`);
@@ -18,6 +18,7 @@ function OrderDetailCustomer() {
 
     setProducts(data);
     setSeller(nameSeller[0].name);
+    console.log(data[0].Sales.status);
   }
 
   function getLocalStorage() {
@@ -25,19 +26,22 @@ function OrderDetailCustomer() {
     setToken(user.token);
   }
 
-  const updateUser = async (id, status) => {
-    const body = {id, status}
-     await updateData('seller/orders', body, token)
-     if(updated) {
-      setUpdated(false)
-     } else {
-      setUpdated(true)
-     }
-  }
+  const updateUser = async (userId, status) => {
+    await updateData('seller/orders', userId, status, token);
+    if (updated) {
+      setUpdated(false);
+    } else {
+      setUpdated(true);
+    }
+  };
 
   useEffect(() => {
     getProductsAndSeller();
-    getLocalStorage()
+    getLocalStorage();
+  }, []);
+
+  useEffect(() => {
+    getProductsAndSeller();
   }, [updated]);
 
   const dataTestid = 'customer_order_details__element-order-table-';
@@ -60,9 +64,9 @@ function OrderDetailCustomer() {
         <button
           data-testid="customer_order_details__button-delivery-check"
           type="button"
-          disabled={ products[0].Sales.status !== 'Entregue' }
+          disabled={ products[0].Sales.status !== 'A Caminho' }
           value="Entregue"
-          onClick={({target}) => {updateUser(target.value, products.Sales.id)}}
+          onClick={ ({ target }) => { updateUser(products[0].Sales.id, target.value); } }
         >
           Marcar Como Entregue
         </button>

@@ -28,7 +28,7 @@ function NavBar() {
             : (
               <>
                 <Link
-                  to="/products"
+                  to="/customer/products"
                   data-testid="customer_products__element-navbar-link-products"
                 >
                   Produtos
