@@ -1,11 +1,13 @@
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
-import { getData } from '../Service/request';
+import { getData, updateData } from '../Service/request';
 
 function OrderDetailCustomer() {
   const { id } = useParams();
   const [products, setProducts] = useState([]);
   const [seller, setSeller] = useState([]);
+  const [token, setToken] = useState();
+  const [updated, setUpdated] = useState(false)
 
   async function getProductsAndSeller() {
     const data = await getData(`sales/products/${id}`);
@@ -18,9 +20,25 @@ function OrderDetailCustomer() {
     setSeller(nameSeller[0].name);
   }
 
+  function getLocalStorage() {
+    const user = JSON.parse(localStorage.getItem('user'));
+    setToken(user.token);
+  }
+
+  const updateUser = async (id, status) => {
+    const body = {id, status}
+     await updateData('seller/orders', body, token)
+     if(updated) {
+      setUpdated(false)
+     } else {
+      setUpdated(true)
+     }
+  }
+
   useEffect(() => {
     getProductsAndSeller();
-  }, []);
+    getLocalStorage()
+  }, [updated]);
 
   const dataTestid = 'customer_order_details__element-order-table-';
   const dataTestid2 = 'customer_order_details__element-order-details-label-';
@@ -42,7 +60,9 @@ function OrderDetailCustomer() {
         <button
           data-testid="customer_order_details__button-delivery-check"
           type="button"
-          disabled={ `${products[0].Sales.status !== 'entregue'}` }
+          disabled={ products[0].Sales.status !== 'Entregue' }
+          value="Entregue"
+          onClick={({target}) => {updateUser(target.value, products.Sales.id)}}
         >
           Marcar Como Entregue
         </button>
