@@ -1,0 +1,42 @@
+.link {
+    text-decoration: none;
+    color: black;
+}
+body {
+    background: url(https://i.pinimg.com/originals/ea/cf/58/eacf585308ddb4e2a7d33136b633aaca.jpg) fixed no-repeat;
+    -webkit-background-size: cover;
+    -o-background-size: cover;
+    -moz-background-size: cover;
+    background-size: cover;
+}
+.order-box {
+    display: inline-block;
+    text-align: center;
+    border-radius: 20%;
+    padding: 30px;
+    margin: 30px;
+    background-color: #faa145;
+    box-shadow: 0 0 30px #7a635e;
+}
+
+.pedido {
+    border-radius: 50%;
+    padding: 20px;
+    background-color: white;
+}
+
+.status-Pendente {
+    color: red;
+}
+
+.status-Preparando {
+    color: yellow;
+}
+
+.status-Em.Trânsito {
+    color: blue;
+}
+
+.status-Entregue {
+    color: green;
+}

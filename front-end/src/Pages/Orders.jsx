@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { getData } from '../Service/request';
 import NavBar from '../Component/Navbar';
+import '../Style/Order.css';
 
 function Orders() {
   const [sales, setSales] = useState([]);
@@ -48,18 +49,22 @@ function Orders() {
       <div>
         {
           sales.map((item) => (
-            <div key={ item.id }>
-              <Link color="black" to={ `/${role}/orders/${item.id}` }>
-                <p data-testid={ `${role}_orders__element-order-id-${item.id}` }>
+            <div key={ item.id } className="order-box">
+              <Link color="black" to={ `/${role}/orders/${item.id}` } className="link">
+                <p
+                  data-testid={ `${role}_orders__element-order-id-${item.id}` }
+                  className="pedido"
+                >
                   Pedido
                   {' '}
                   {item.id}
                 </p>
-
+                <br />
                 <h3
                   data-testid={
                     `${role}_orders__element-delivery-status-${item.id}`
                   }
+                  className={ `status-${item.status}` }
                 >
                   {item.status}
 
@@ -72,6 +77,7 @@ function Orders() {
                   {dateFormat(item.saleDate)}
 
                 </p>
+                <br />
                 <p
                   data-testid={ `${role}_orders__element-card-price-${item.id}` }
                 >
@@ -81,6 +87,7 @@ function Orders() {
                 {role === 'seller' ? (
                   <p
                     data-testid={ `seller_orders__element-card-address-${item.id}` }
+                    className="adress"
                   >
                     {item.deliveryAddress}
                   </p>
