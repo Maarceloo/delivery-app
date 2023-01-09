@@ -24,7 +24,6 @@ function Orders() {
 
   async function getSales() {
     const saless = await getData('seller/orders');
-    console.log(role);
     if (role === 'seller') {
       const filteredSales = saless.filter((item) => item.sellerId === userId);
       setSales(filteredSales);
