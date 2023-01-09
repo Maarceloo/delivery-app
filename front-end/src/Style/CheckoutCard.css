@@ -98,3 +98,8 @@ td {
   font-size: larger;
   padding: 15px;
 }
+
+.Btn-Checkout:disabled {
+  background-color: rgb(232, 232, 232);
+  color: red;
+}
