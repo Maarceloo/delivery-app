@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useHistory } from 'react-router-dom';
 import { getData, postData } from '../Service/request';
+import '../Style/CheckoutCard.css';
 
 function CheckoutCard() {
   const history = useHistory();
@@ -80,8 +81,8 @@ function CheckoutCard() {
   if (!cartProducts.length) return <p>Loading...</p>;
 
   return (
-    <div>
-      <h1>Checkout</h1>
+    <div className="Main-Div-Checkout">
+      <h1>Finalizar Pedido</h1>
       <table>
         <thead>
           <tr>
