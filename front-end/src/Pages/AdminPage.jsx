@@ -1,6 +1,8 @@
+/* eslint-disable react/jsx-max-depth */
 import React, { useEffect, useState } from 'react';
 import NavBar from '../Component/Navbar';
 import { deleteData, getData, postData } from '../Service/request';
+import '../Style/AdminPage.css';
 
 function AdminPage() {
   const [name, setName] = useState('');
@@ -78,125 +80,146 @@ function AdminPage() {
   return (
     <div>
       <NavBar />
+      <section className="Admin-Page">
+        <form className="FormAdmin">
+          <fieldset className="Legend-Checkout">
+            <legend
+              className="Legend-Checkout-H1"
+              align="center"
+            >
+              Detalhes e Endereço para Entrega
 
-      <form>
-        <h1>Cadastrar novo usuário</h1>
-        <label htmlFor="Nome">
-          Nome
-          <input
-            type="text"
-            name="name"
-            data-testid="admin_manage__input-name"
-            placeholder="Digite seu Nome"
-            onChange={ ({ target }) => setName(target.value) }
-          />
-        </label>
-        <label htmlFor="Email">
-          Email
-          <input
-            type="email"
-            name="email"
-            data-testid="admin_manage__input-email"
-            placeholder="Digite seu Email"
-            onChange={ ({ target }) => setEmail(target.value) }
-          />
-        </label>
-        <label htmlFor="Password">
-          Senha
-          <input
-            type="password"
-            name="name"
-            data-testid="admin_manage__input-password"
-            placeholder="Digite sua Senha"
-            onChange={ ({ target }) => setPassword(target.value) }
-          />
-        </label>
-        <label htmlFor="Tipo">
-          Tipo
-          <select
-            data-testid="admin_manage__select-role"
-            name="seller"
-            id="seller"
-            onChange={ ({ target }) => { setRole(target.value); } }
-          >
-            <option value="seller">Vendedor</option>
-            <option value="customer">Cliente</option>
-            <option value="administrator">Administrador</option>
-          </select>
-        </label>
-        <button
-          type="button"
-          data-testid="admin_manage__button-register"
-          disabled={ disabledRegisterBttn() }
-          onClick={ handleClickRegister }
-        >
-          Cadastrar
-        </button>
-        {register
+            </legend>
+            <label htmlFor="Nome">
+              Nome
+              <br />
+              <input
+                className="Input-Checkout"
+                type="text"
+                name="name"
+                data-testid="admin_manage__input-name"
+                placeholder="Digite seu Nome"
+                onChange={ ({ target }) => setName(target.value) }
+              />
+            </label>
+            <label htmlFor="Email">
+              Email
+              <br />
+              <input
+                className="Input-Checkout"
+                type="email"
+                name="email"
+                data-testid="admin_manage__input-email"
+                placeholder="Digite seu Email"
+                onChange={ ({ target }) => setEmail(target.value) }
+              />
+            </label>
+            <label htmlFor="Password">
+              Senha
+              <br />
+              <input
+                className="Input-Checkout"
+                type="password"
+                name="name"
+                data-testid="admin_manage__input-password"
+                placeholder="Digite sua Senha"
+                onChange={ ({ target }) => setPassword(target.value) }
+              />
+            </label>
+            <label htmlFor="Tipo">
+              Tipo
+              <br />
+              <select
+                className="Input-Checkout"
+                data-testid="admin_manage__select-role"
+                name="seller"
+                id="seller"
+                onChange={ ({ target }) => { setRole(target.value); } }
+              >
+                <option value="seller">Vendedor</option>
+                <option value="customer">Cliente</option>
+                <option value="administrator">Administrador</option>
+              </select>
+            </label>
+            <br />
+            <button
+              className="Btn-Checkout"
+              type="button"
+              data-testid="admin_manage__button-register"
+              disabled={ disabledRegisterBttn() }
+              onClick={ handleClickRegister }
+            >
+              Cadastrar
+            </button>
+            {register
     && <p data-testid="admin_manage__element-invalid-register">Usuário existente!</p> }
-      </form>
+          </fieldset>
+        </form>
+        <br />
+        <br />
+        <h1>Lista de Usuários</h1>
+        <table>
+          <thead>
+            <tr>
+              <th>Item</th>
+              <th>Nome</th>
+              <th>E-mail</th>
+              <th>Tipo</th>
+              <th>Excluir</th>
+            </tr>
+          </thead>
+          <tbody>
+            {
+              allUsers && allUsers.map((item, index) => (
+                <tr key={ index }>
+                  <td
+                    data-testid={
+                      `admin_manage__element-user-table-item-number-${item.id}`
+                    }
+                  >
+                    {index + 1}
 
-      <h1>Lista de Usuários</h1>
-      <table>
-        <thead>
-          <tr>
-            <th>Item</th>
-            <th>Nome</th>
-            <th>E-mail</th>
-            <th>Tipo</th>
-            <th>Excluir</th>
-          </tr>
-        </thead>
-        <tbody>
-          {
-            allUsers && allUsers.map((item, index) => (
-              <tr key={ index }>
-                <td
-                  data-testid={
-                    `admin_manage__element-user-table-item-number-${item.id}`
-                  }
-                >
-                  {index + 1}
+                  </td>
+                  <td
+                    data-testid={
+                      `admin_manage__element-user-table-name-${item.id}`
+                    }
+                  >
+                    {item.name}
 
-                </td>
-                <td
-                  data-testid={
-                    `admin_manage__element-user-table-name-${item.id}`
-                  }
-                >
-                  {item.name}
+                  </td>
+                  <td
+                    data-testid={
+                      `admin_manage__element-user-table-email-${item.id}`
+                    }
+                  >
+                    {item.email}
 
-                </td>
-                <td
-                  data-testid={
-                    `admin_manage__element-user-table-email-${item.id}`
-                  }
-                >
-                  {item.email}
+                  </td>
+                  <td
+                    data-testid={
+                      `admin_manage__element-user-table-role-${item.id}`
+                    }
+                  >
+                    {item.role}
 
-                </td>
-                <td
-                  data-testid={
-                    `admin_manage__element-user-table-role-${item.id}`
-                  }
-                >
-                  {item.role}
+                  </td>
+                  <button
+                    className="Btn-Checkout"
+                    data-testid={ `admin_manage__element-user-table-remove-${item.id}` }
+                    type="button"
+                    onClick={ () => deleteUser(item.id) }
+                  >
+                    Excluir
+                  </button>
+                </tr>
 
-                </td>
-                <button
-                  data-testid={ `admin_manage__element-user-table-remove-${item.id}` }
-                  type="button"
-                  onClick={ () => deleteUser(item.id) }
-                >
-                  Excluir
-                </button>
-              </tr>
-
-            ))
-          }
-        </tbody>
-      </table>
-      <tr />
+              ))
+            }
+          </tbody>
+        </table>
+        <tr />
+      </section>
     </div>
   );
 }

@@ -17,6 +17,7 @@
 .Interactive-Role, .Customer-Orders, .Logout {
   color: #7f3d13;
   padding: 5px;
+  width: fit-content;
 }
 
 .Interactive-Role:hover, .Customer-Orders:hover {
