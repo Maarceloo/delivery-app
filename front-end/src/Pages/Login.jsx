@@ -2,7 +2,7 @@ import React, { useContext, useState, useEffect } from 'react';
 import { useHistory } from 'react-router-dom';
 import Context from '../Context/LoginContext';
 import { postData } from '../Service/request';
-import '../Style/Login.css';
+import '../Style/LoginRegister.css';
 
 function Login() {
   const [login, setLogin] = useState(false);
@@ -64,14 +64,13 @@ function Login() {
   };
 
   return (
-    <div className="BodyLogin">
-      <form className="Form">
+    <div className="Body-LoginRegister">
+      <form className="LoginRegister-Form">
         <h1>Login</h1>
-        <section className="Input-Login">
+        <section className="Input-LoginRegister">
           <h1>Email</h1>
           <br />
           <input
-            className="Input-Login-Email"
             type="email"
             name="email"
             value={ email }
@@ -80,11 +79,10 @@ function Login() {
             onChange={ ({ target }) => setEmail(target.value) }
           />
         </section>
-        <section className="Input-Login">
+        <section className="Input-LoginRegister">
           <h1>Senha</h1>
           <br />
           <input
-            className="Input-Login-Password"
             type="password"
             name="password"
             value={ password }
@@ -94,7 +92,7 @@ function Login() {
           />
         </section>
         <button
-          className="Bttn-Login"
+          className="Bttn-LoginRegister"
           id="button"
           type="button"
           value="Login"
