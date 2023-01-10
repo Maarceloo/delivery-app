@@ -17,7 +17,6 @@ function NavBar() {
   return (
     <header className="Header">
       <nav className="NavBar">
-
         {
           username.role === 'seller' ? (
             <Link

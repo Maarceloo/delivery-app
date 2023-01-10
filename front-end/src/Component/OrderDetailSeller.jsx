@@ -1,4 +1,3 @@
-/* eslint-disable react/jsx-max-depth */
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { getData, updateData } from '../Service/request';
@@ -87,46 +86,47 @@ function OrderDetailSeller() {
           Saiu para Entrega!
         </button>
       </section>
-      <section className="Board">
-        <table>
-          <thead>
-            <tr>
-              <th>Item</th>
-              <th>Descrição</th>
-              <th>Quantidade</th>
-              <th>Valor Unitário</th>
-              <th>Subtotal</th>
+      <table>
+        <thead>
+          <tr>
+            <th>Item</th>
+            <th>Descrição</th>
+            <th>Quantidade</th>
+            <th>Valor Unitário</th>
+            <th>Subtotal</th>
+          </tr>
+        </thead>
+        <tbody>
+          {products.map((item, index) => (
+            <tr key={ index }>
+              <td data-testid={ `${dataTestid}item-number-${index}` }>
+                {index + 1}
+              </td>
+              <td data-testid={ `${dataTestid}name-${index}` }>
+                {item.products.name}
+              </td>
+              <td data-testid={ `${dataTestid}quantity-${index}` }>
+                {item.quantity}
+              </td>
+              <td data-testid={ `${dataTestid}unit-price-${index}` }>
+                {item.products.price}
+              </td>
+              <td data-testid={ `${dataTestid}sub-total-${index}` }>
+                {(item.products.price * item.quantity)
+                  .toFixed(2)
+                  .replace(/\./, ',')}
+              </td>
             </tr>
-          </thead>
-          <tbody>
-            {products.map((item, index) => (
-              <tr key={ index }>
-                <td data-testid={ `${dataTestid}item-number-${index}` }>
-                  {index + 1}
-                </td>
-                <td data-testid={ `${dataTestid}name-${index}` }>
-                  {item.products.name}
-                </td>
-                <td data-testid={ `${dataTestid}quantity-${index}` }>
-                  {item.quantity}
-                </td>
-                <td data-testid={ `${dataTestid}unit-price-${index}` }>
-                  {item.products.price}
-                </td>
-                <td data-testid={ `${dataTestid}sub-total-${index}` }>
-                  {(item.products.price * item.quantity)
-                    .toFixed(2)
-                    .replace(/\./, ',')}
-                </td>
-              </tr>
-            ))}
-          </tbody>
-        </table>
-        <h2 data-testid="seller_order_details__element-order-total-price">
-          Total da compra: R$
-          {` ${products[0].Sales.totalPrice.replace(/\./, ',')} `}
-        </h2>
-      </section>
+          ))}
+        </tbody>
+      </table>
+      <h2
+        className="Total-Price"
+        data-testid="seller_order_details__element-order-total-price"
+      >
+        Total da compra: R$
+        {` ${products[0].Sales.totalPrice.replace(/\./, ',')} `}
+      </h2>
     </div>
   );
 }
