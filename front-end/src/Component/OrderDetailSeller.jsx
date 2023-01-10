@@ -59,7 +59,10 @@ function OrderDetailSeller() {
             'pt-br',
           )}`}
         </h1>
-        <h1 data-testid={ `${dataTestid2}delivery-status` }>
+        <h1
+          data-testid={ `${dataTestid2}delivery-status` }
+          className={ `status-${products[0].Sales.status}` }
+        >
           {`${products[0].Sales.status}`}
         </h1>
         <button
