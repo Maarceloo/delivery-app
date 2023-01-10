@@ -184,7 +184,7 @@ function CheckoutCard() {
           </label>
           <br />
           <button
-            className="Btn-Checkout"
+            className="Generic-Btn"
             type="button"
             onClick={ () => { postSales(); } }
             data-testid="customer_checkout__button-submit-order"

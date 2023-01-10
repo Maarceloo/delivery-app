@@ -25,12 +25,21 @@
   border: 1px solid #7a635e;
   border-radius: 5px;
   color: #7a635e;
+  font-weight: 900;
 
 }
 
+.logoutIcon {
+  height: 20px;
+  width: 25px;
+}
+
+
 .Logout:hover {
-  background-color: rgba(255, 0, 0, 0.773);
+  align-items: center;
+  background-color: #7f3d13;
   border: 1px solid #7a635e;
   border-radius: 5px;
-  color: #7a635e;
+  display: flex;
+  transition: 600ms ease;
 }

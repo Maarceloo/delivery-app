@@ -64,7 +64,7 @@ function OrderDetailCustomer() {
           {`${products[0].Sales.status}`}
         </h1>
         <button
-          className="Btn-Checkout"
+          className="Generic-Btn"
           data-testid="customer_order_details__button-delivery-check"
           type="button"
           disabled={ products[0].Sales.status !== 'Em Trânsito' }

@@ -54,7 +54,6 @@ td {
   flex-direction: column;
   height: 250px;
   justify-content: center;
-  margin-top: 600px;
   padding: 145px;
   text-align: center;
   width: 570px;
@@ -62,15 +61,10 @@ td {
 
 
 .Board-Checkout-Payment {
-  align-items: center;
-  display: flex;
-  flex-direction: row;
-  height: 100px;
-  justify-content: space-evenly;
-  padding: 40px;
+  margin-top: 30px;
 }
 
-.Btn-Checkout {
+.Generic-Btn {
   align-self: center;
   background-color: #7f3d13;
   border: 1px solid black;
@@ -82,9 +76,15 @@ td {
   width: 150px;
 }
 
-.Btn-Checkout:hover {
+.Generic-Btn:hover {
   cursor: pointer;
   opacity: 0.8;
+}
+
+.Generic-Btn:disabled {
+  background-color: rgb(232, 232, 232);
+  color: red;
+  cursor: not-allowed;
 }
 
 .Input-Checkout {
@@ -97,9 +97,4 @@ td {
   border-radius: 50%;
   font-size: larger;
   padding: 15px;
-}
-
-.Btn-Checkout:disabled {
-  background-color: rgb(232, 232, 232);
-  color: red;
 }

@@ -63,7 +63,7 @@ function OrderDetailSeller() {
           {`${products[0].Sales.status}`}
         </h1>
         <button
-          className="Btn-Checkout"
+          className="Generic-Btn"
           type="button"
           data-testid="seller_order_details__button-preparing-check"
           disabled={ products[0].Sales.status !== 'Pendente' }
@@ -75,7 +75,7 @@ function OrderDetailSeller() {
           Preparar Pedido!
         </button>
         <button
-          className="Btn-Checkout"
+          className="Generic-Btn"
           data-testid="seller_order_details__button-dispatch-check"
           type="button"
           disabled={ products[0].Sales.status !== 'Preparando' }

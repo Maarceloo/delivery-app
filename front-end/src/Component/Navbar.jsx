@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import '../Style/NavBar.css';
+import logoutIcon from '../images/logoutIcon.png';
 
 function NavBar() {
   const [username, setUsername] = useState([]);
@@ -59,7 +60,7 @@ function NavBar() {
           data-testid="customer_products__element-navbar-link-logout"
           className="Logout"
         >
-          Logout
+          <img className="logoutIcon" src={ logoutIcon } alt="logoutIcon" />
         </Link>
       </nav>
     </header>
