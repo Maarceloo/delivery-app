@@ -3,7 +3,7 @@
 import React, { useState, useEffect } from 'react';
 import { useHistory } from 'react-router-dom';
 import { getData } from '../Service/request';
-import '../Style/ProductCard.css'
+import '../Style/ProductCard.css';
 
 function ProductCard() {
   const history = useHistory();
@@ -77,35 +77,35 @@ function ProductCard() {
 
   return (
     <>
-      <div className='page'>
+      <div className="page">
         {product.map((item) => (
-          <div key={item.id} className='product'>
+          <div key={ item.id } className="product">
             <h1
-              data-testid={`customer_products__element-card-title-${item.id}`}
+              data-testid={ `customer_products__element-card-title-${item.id}` }
             >
               {item.name}
             </h1>
             <h1
-              data-testid={`customer_products__element-card-price-${item.id}`}
+              data-testid={ `customer_products__element-card-price-${item.id}` }
             >
               {item.price.replace(/\./, ',')}
             </h1>
             <img
-              data-testid={`customer_products__img-card-bg-image-${item.id}`}
-              src={item.urlImage}
-              alt={item.name}
+              data-testid={ `customer_products__img-card-bg-image-${item.id}` }
+              src={ item.urlImage }
+              alt={ item.name }
               width="100px"
             />
             {/* {quantity <= 0
             ? setButtonDisabled === true
             : ( */}
-            <div className='product-quantity'>
+            <div className="product-quantity">
               <button
                 className="button"
                 type="button"
-                onClick={() => removeQuantity(item)}
+                onClick={ () => removeQuantity(item) }
                 // disabled={ buttonDisabled }
-                data-testid={`customer_products__button-card-rm-item-${item.id}`}
+                data-testid={ `customer_products__button-card-rm-item-${item.id}` }
               >
                 -
               </button>
@@ -113,17 +113,17 @@ function ProductCard() {
            */}
               <input
                 type="text"
-                onChange={({ target }) => inputValue(item, target.value)}
+                onChange={ ({ target }) => inputValue(item, target.value) }
                 // value={ quantity }
-                value={quantity.find((i) => i.id === item.id)?.quantity
-                  ? quantity.find((i) => i.id === item.id)?.quantity : 0}
-                data-testid={`customer_products__input-card-quantity-${item.id}`}
+                value={ quantity.find((i) => i.id === item.id)?.quantity
+                  ? quantity.find((i) => i.id === item.id)?.quantity : 0 }
+                data-testid={ `customer_products__input-card-quantity-${item.id}` }
               />
               <button
                 className="button"
                 type="button"
-                onClick={() => addQuantity(item)}
-                data-testid={`customer_products__button-card-add-item-${item.id}`}
+                onClick={ () => addQuantity(item) }
+                data-testid={ `customer_products__button-card-add-item-${item.id}` }
               >
                 +
               </button>
@@ -133,11 +133,11 @@ function ProductCard() {
       </div>
 
       <button
-        className='checkout-button'
+        className="checkout-button"
         type="button"
         data-testid="customer_products__button-cart"
-        onClick={() => history.push('/customer/checkout')}
-        disabled={quantity.length === 0}
+        onClick={ () => history.push('/customer/checkout') }
+        disabled={ quantity.length === 0 }
       >
         <h4
           data-testid="customer_products__checkout-bottom-value"
