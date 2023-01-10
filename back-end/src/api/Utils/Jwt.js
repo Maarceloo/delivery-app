@@ -1,9 +1,9 @@
 const jwt = require('jsonwebtoken');
 const fs = require('fs/promises');
 
-const filePath = '../back-end/jwt.evaluation.key';
+const filePath = './jwt.evaluation.key';
 
-const SECRET_KEY = () =>
+const SECRET_KEY = async () =>
   fs.readFile(filePath, 'utf-8', (_err, data) => JSON.stringify(data));
 
 const jwtConfig = {
@@ -11,8 +11,9 @@ const jwtConfig = {
   algorithm: 'HS256',
 };
 
-const jwtSign = async ({ id, name, email }) =>
+const jwtSign = async ({ id, name, email }) => {
   jwt.sign({ id, name, email }, await SECRET_KEY(), jwtConfig);
+};
 
 const jwtValidate = async (req, res, next) => {
   const token = req.header('Authorization');

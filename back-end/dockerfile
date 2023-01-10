@@ -1,0 +1,13 @@
+FROM node:16-alpine
+
+WORKDIR /app-back
+
+COPY package.json ./
+
+RUN npm install
+
+COPY . .
+# evita erro de cache
+RUN chown -R 1001:1001 '/root/' 
+
+CMD ["npm", "run", "up:app"]

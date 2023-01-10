@@ -1,0 +1,38 @@
+version: '3'
+services:
+  db:
+    image: mysql:8.0.21
+    container_name: delivery-mysql
+    ports:
+      - 3306:3306
+    environment:
+      - MYSQL_ROOT_PASSWORD=password
+    restart: 'always'
+    healthcheck:
+      test: ["CMD", "mysqladmin" ,"ping", "-h", "localhost"] # Deve aguardar o banco ficar operacional
+      timeout: 5s
+      retries: 5
+  backend:
+    build: ./back-end/
+    container_name: delivery-backend
+    ports:
+      - 3001:3001
+    volumes:
+      - ./back-end:/app-back
+    depends_on:
+      db:
+        condition: service_healthy #verifica a saude do banco testado em healthcheck
+    healthcheck:
+      test: ["CMD", "lsof", "-t", "-i:3001"] # Caso utilize outra porta interna para o back, altere ela aqui também
+      timeout: 5s
+      retries: 5
+  front-end: 
+    build: ./front-end
+    container_name: delivery-frontend
+    ports:
+      - 3000:3000
+    volumes:
+    - ./front-end:/app-front
+    depends_on:
+      backend:
+        condition: service_healthy
