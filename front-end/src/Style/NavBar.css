@@ -10,7 +10,8 @@
   align-items: center;
   display: flex;
   flex-direction: row;
-  justify-content: space-around;
+  font-size: larger;
+  justify-content: space-evenly;
   width: 100%;
 }
 
@@ -34,12 +35,25 @@
   width: 25px;
 }
 
+.LogoutPai {
+  display: flex;
+  flex-direction: row-reverse;
+  position: absolute;
+  right: 10px;
+}
+
+.Logout {
+  background-color: #faa145;
+  border: 1px solid #7a635e;
+  border-radius: 5px;
+  display: flex;
+}
 
 .Logout:hover {
   align-items: center;
   background-color: #7f3d13;
   border: 1px solid #7a635e;
-  border-radius: 5px;
+  border-radius: 10px;
   display: flex;
-  transition: 600ms ease;
+  transition: 1000ms ease;
 }

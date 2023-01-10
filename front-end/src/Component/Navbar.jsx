@@ -54,14 +54,16 @@ function NavBar() {
         >
           {username.name}
         </h1>
-        <Link
-          to="/login"
-          onClick={ () => localStorage.clear() }
-          data-testid="customer_products__element-navbar-link-logout"
-          className="Logout"
-        >
-          <img className="logoutIcon" src={ logoutIcon } alt="logoutIcon" />
-        </Link>
+        <div className="LogoutPai">
+          <Link
+            to="/login"
+            onClick={ () => localStorage.clear() }
+            data-testid="customer_products__element-navbar-link-logout"
+            className="Logout"
+          >
+            <img className="logoutIcon" src={ logoutIcon } alt="logoutIcon" />
+          </Link>
+        </div>
       </nav>
     </header>
   );
