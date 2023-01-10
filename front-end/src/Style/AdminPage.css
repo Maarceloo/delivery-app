@@ -1,0 +1,17 @@
+.Admin-Page {
+  align-content: stretch;
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  height: 100px;
+  padding: 40px;
+}
+
+/*
+.FormAdmin {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 40px;
+} */

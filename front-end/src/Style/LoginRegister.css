@@ -7,9 +7,10 @@
   font-weight: 700;
   margin: 0;
   padding: 0;
+  text-decoration: none;
 }
 
-.BodyLogin {
+.Body-LoginRegister {
   align-items: center;
   background-image: url('https://afresp.org.br/wp-content/uploads/2021/12/cerveja-site.jpg');
   background-size: cover;
@@ -20,7 +21,7 @@
   width: 100vw;
 }
 
-.Form {
+.LoginRegister-Form {
   align-items: center;
   background-color: #dc8522;
   border-radius: 10%;
@@ -32,13 +33,13 @@
   width: 500px;
 }
 
-.Form > h1 {
+.LoginRegister-Form > h1 {
   color: #7f3d13;
   font-weight: 900;
   text-transform: capitalize;
 }
 
-.Input-Login {
+.Input-LoginRegister {
   color: #7f3d13;
   display: flex;
   flex-direction: column;
@@ -47,7 +48,7 @@
 }
 
 
-.Input-Login > input {
+.Input-LoginRegister > input {
   background-color: white;
   border: none;
   border-radius: 10px;
@@ -56,7 +57,7 @@
   width: 100%;
 }
 
-.Bttn-Login {
+.Bttn-LoginRegister {
   background-color: #faa145;
   border: none;
   border-radius: 10px;
@@ -72,9 +73,15 @@
   width: 100%;
 }
 
-.Bttn-Login:hover {
+.Bttn-LoginRegister:hover {
   background-color: #7f3d13;
   opacity: 0.9;
+}
+
+.Bttn-LoginRegister:disabled {
+  background-color: rgb(232, 232, 232);
+  color: red;
+  cursor: not-allowed;
 }
 
 .Bttn-Register {

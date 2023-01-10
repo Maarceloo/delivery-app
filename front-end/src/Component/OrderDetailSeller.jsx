@@ -1,6 +1,8 @@
+/* eslint-disable react/jsx-max-depth */
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { getData, updateData } from '../Service/request';
+import '../Style/CheckoutCard.css';
 
 function OrderDetailSeller() {
   const { id } = useParams();
@@ -48,9 +50,9 @@ function OrderDetailSeller() {
   if (!products.length && !seller.length) return <p>Loading...</p>;
 
   return (
-    <>
-      <h1> Detalhe do pedido</h1>
-      <section>
+    <div className="Main-Div-Order-Details">
+      <h1 className="H1-Detail"> Detalhe do pedido</h1>
+      <section className="Section-Details-Order">
         <h1 data-testid={ `${dataTestid2}order-id` }>{`PEDIDO ${id}`}</h1>
         <h1 data-testid={ `${dataTestid2}order-date` }>
           {`${new Date(products[0].Sales.saleDate).toLocaleDateString(
@@ -61,6 +63,7 @@ function OrderDetailSeller() {
           {`${products[0].Sales.status}`}
         </h1>
         <button
+          className="Generic-Btn"
           type="button"
           data-testid="seller_order_details__button-preparing-check"
           disabled={ products[0].Sales.status !== 'Pendente' }
@@ -72,6 +75,7 @@ function OrderDetailSeller() {
           Preparar Pedido!
         </button>
         <button
+          className="Generic-Btn"
           data-testid="seller_order_details__button-dispatch-check"
           type="button"
           disabled={ products[0].Sales.status !== 'Preparando' }
@@ -83,45 +87,47 @@ function OrderDetailSeller() {
           Saiu para Entrega!
         </button>
       </section>
-      <table>
-        <thead>
-          <tr>
-            <th>Item</th>
-            <th>Descrição</th>
-            <th>Quantidade</th>
-            <th>Valor Unitário</th>
-            <th>Subtotal</th>
-          </tr>
-        </thead>
-        <tbody>
-          {products.map((item, index) => (
-            <tr key={ index }>
-              <td data-testid={ `${dataTestid}item-number-${index}` }>
-                {index + 1}
-              </td>
-              <td data-testid={ `${dataTestid}name-${index}` }>
-                {item.products.name}
-              </td>
-              <td data-testid={ `${dataTestid}quantity-${index}` }>
-                {item.quantity}
-              </td>
-              <td data-testid={ `${dataTestid}unit-price-${index}` }>
-                {item.products.price}
-              </td>
-              <td data-testid={ `${dataTestid}sub-total-${index}` }>
-                {(item.products.price * item.quantity)
-                  .toFixed(2)
-                  .replace(/\./, ',')}
-              </td>
+      <section className="Board">
+        <table>
+          <thead>
+            <tr>
+              <th>Item</th>
+              <th>Descrição</th>
+              <th>Quantidade</th>
+              <th>Valor Unitário</th>
+              <th>Subtotal</th>
             </tr>
-          ))}
-        </tbody>
-      </table>
-      <h2 data-testid="seller_order_details__element-order-total-price">
-        Total da compra: R$
-        {` ${products[0].Sales.totalPrice.replace(/\./, ',')} `}
-      </h2>
-    </>
+          </thead>
+          <tbody>
+            {products.map((item, index) => (
+              <tr key={ index }>
+                <td data-testid={ `${dataTestid}item-number-${index}` }>
+                  {index + 1}
+                </td>
+                <td data-testid={ `${dataTestid}name-${index}` }>
+                  {item.products.name}
+                </td>
+                <td data-testid={ `${dataTestid}quantity-${index}` }>
+                  {item.quantity}
+                </td>
+                <td data-testid={ `${dataTestid}unit-price-${index}` }>
+                  {item.products.price}
+                </td>
+                <td data-testid={ `${dataTestid}sub-total-${index}` }>
+                  {(item.products.price * item.quantity)
+                    .toFixed(2)
+                    .replace(/\./, ',')}
+                </td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+        <h2 data-testid="seller_order_details__element-order-total-price">
+          Total da compra: R$
+          {` ${products[0].Sales.totalPrice.replace(/\./, ',')} `}
+        </h2>
+      </section>
+    </div>
   );
 }
 
