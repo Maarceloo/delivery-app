@@ -1,0 +1,86 @@
+* {
+  box-sizing: border-box;
+  font-family: Inter Tight , sans-serif;
+  margin: 0;
+  padding: 0;
+  transition: all 0.2s linear;
+}
+
+body {
+  background: url('https://i.pinimg.com/originals/ea/cf/58/eacf585308ddb4e2a7d33136b633aaca.jpg') fixed no-repeat;
+  background-size: cover;
+}
+
+.page {
+  margin: 0 auto;
+  max-width: 1200px;
+  padding: 3rem 2rem;
+
+}
+
+.product {
+  align-items: center;
+  background-color: white;
+  border: 3px solid black;
+  border-radius: 10px;
+  display: inline-block;
+  height: 400px;
+  justify-content: center;
+  margin: 30px;
+  padding: 20px;
+  width: 200px;
+}
+
+.product > h1 {
+  background-color: white;
+  font-size: 20px;
+  margin-bottom: 60px;
+  max-height: 40px;
+  min-height: 40px;
+  text-align: center;
+}
+
+.product > img {
+  display: flex;
+  height: 100px;
+  margin: auto;
+  width: 60%;
+}
+
+.product-quantity {
+  background-color: white;
+  border: 3px solid #9d9e9b;
+  display: flex;
+  margin: auto;
+  padding: 10px;
+  width: 60%;
+}
+
+.product-quantity > button {
+  background-color: white;
+  border: none;
+  height: 30px;
+  width: 30px;
+}
+
+.product-quantity > input {
+  align-items: center;
+  background-color: white;
+  border: none;
+  height: 30px;
+  width: 8px;
+}
+
+.product-quantity > button:hover {
+  color: crimson;
+}
+
+.checkout-button {
+  border-radius: 20px;
+  bottom: 0;
+  height: 60px;
+  margin: 20px;
+  position: fixed;
+  right: 0;
+  width: 80px;
+}

@@ -1,0 +1,47 @@
+.Admin-Page {
+  align-content: stretch;
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  height: 100px;
+  padding: 40px;
+}
+
+.Admin-Board {
+  align-content: center;
+  align-items: center;
+  background-color: #dc8522;
+  border: 2px solid black;
+  border-radius: 10px;
+  color: white;
+  display: flex;
+  flex-direction: column;
+  height: 330px;
+  justify-content: center;
+  padding: 175px;
+  text-align: center;
+  width: 570px;
+}
+
+.NewUser {
+  background-color: #7f3d13;
+  border: #7f3d13 solid 2px;
+  border-radius: 50%;
+  color: white;
+  font-size: larger;
+  padding: 15px;
+  position: absolute;
+  top: 63px;
+}
+
+.H1-Admin {
+  background-color: #7f3d13;
+  border: #7f3d13 solid 2px;
+  border-radius: 50%;
+  color: white;
+  font-size: larger;
+  padding: 15px;
+  position: absolute;
+  top: 456px;
+}
+

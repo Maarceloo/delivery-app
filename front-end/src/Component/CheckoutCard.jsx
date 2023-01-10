@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useHistory } from 'react-router-dom';
 import { getData, postData } from '../Service/request';
+import '../Style/CheckoutCard.css';
 
 function CheckoutCard() {
   const history = useHistory();
@@ -80,8 +81,8 @@ function CheckoutCard() {
   if (!cartProducts.length) return <p>Loading...</p>;
 
   return (
-    <div>
-      <h1>Checkout</h1>
+    <div className="Main-Div-Checkout">
+      <h1 className="H1-Finalizar">Finalizar Pedido</h1>
       <table>
         <thead>
           <tr>
@@ -110,6 +111,7 @@ function CheckoutCard() {
                 {(item.price * item.quantity).toFixed(2).replace(/\./, ',')}
               </td>
               <button
+                className="Btn-Remove"
                 type="button"
                 data-testid={ `${dataTestid}remove-${index}` }
                 value="Remover"
@@ -121,54 +123,75 @@ function CheckoutCard() {
           ))}
         </tbody>
       </table>
-      <h2 data-testid="customer_checkout__element-order-total-price">
+      <h2
+        className="Total-Price"
+        data-testid="customer_checkout__element-order-total-price"
+      >
         Total da compra: R$
         {` ${totalProducts().replace(/\./, ',')} `}
       </h2>
-      <h1>Detalhes e Endereço para Entrega</h1>
-      <form>
-        <label htmlFor="seller">
-          P.Vendedora Responsável
-          <select
-            data-testid="customer_checkout__select-seller"
-            name="seller"
-            id="seller"
-            onChange={ ({ target }) => { saveSeller(target.value); } }
+      <form className="Board-Checkout-Payment">
+        <fieldset className="Legend-Checkout">
+          <legend
+            className="Legend-Checkout-H1"
+            align="center"
           >
-            { seller.map((sell) => (
-              <option key={ sell.id } value={ sell.id }>{sell.name}</option>
+            Detalhes e Endereço para Entrega
 
-            ), [])}
+          </legend>
+          <label htmlFor="seller">
+            P.Vendedora Responsável
+            <br />
+            <select
+              className="Generic-Input"
+              data-testid="customer_checkout__select-seller"
+              name="seller"
+              id="seller"
+              onChange={ ({ target }) => { saveSeller(target.value); } }
+            >
+              { seller.map((sell) => (
+                <option key={ sell.id } value={ sell.id }>{sell.name}</option>
 
-          </select>
-        </label>
-        <label htmlFor="address">
-          Endereço de Entrega
-          <input
-            type="text"
-            data-testid="customer_checkout__input-address"
-            onChange={ ({ target }) => { saveAddress(target.value); } }
-            name="address"
-            id="address"
-          />
-        </label>
-        <label htmlFor="number">
-          Número
-          <input
-            type="text"
-            data-testid="customer_checkout__input-address-number"
-            onChange={ ({ target }) => { saveNumber(target.value); } }
-            name="number"
-            id="number"
-          />
-        </label>
-        <button
-          type="button"
-          onClick={ () => { postSales(); } }
-          data-testid="customer_checkout__button-submit-order"
-        >
-          Finalizar Pedido
-        </button>
+              ), [])}
+
+            </select>
+          </label>
+          <br />
+          <label htmlFor="address">
+            Endereço de Entrega
+            <br />
+            <input
+              className="Generic-Input"
+              type="text"
+              data-testid="customer_checkout__input-address"
+              onChange={ ({ target }) => { saveAddress(target.value); } }
+              name="address"
+              id="address"
+            />
+          </label>
+          <br />
+          <label htmlFor="number">
+            Número
+            <br />
+            <input
+              className="Generic-Input"
+              type="text"
+              data-testid="customer_checkout__input-address-number"
+              onChange={ ({ target }) => { saveNumber(target.value); } }
+              name="number"
+              id="number"
+            />
+          </label>
+          <br />
+          <button
+            className="Generic-Btn"
+            type="button"
+            onClick={ () => { postSales(); } }
+            data-testid="customer_checkout__button-submit-order"
+          >
+            Finalizar Pedido
+          </button>
+        </fieldset>
       </form>
     </div>
   );

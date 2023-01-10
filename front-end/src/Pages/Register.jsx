@@ -2,6 +2,7 @@ import React, { useContext, useState } from 'react';
 import { useHistory } from 'react-router-dom';
 import RegisterContext from '../Context/RegisterContext';
 import { postData } from '../Service/request';
+import '../Style/LoginRegister.css';
 
 function Register() {
   const { email,
@@ -27,8 +28,9 @@ function Register() {
 
   const handleClickRegister = async () => {
     try {
-      await postData('register', objRegister);
+      const infoRegister = await postData('register', objRegister);
       setRegister(false);
+      localStorage.setItem('user', JSON.stringify(infoRegister));
       history.push('/customer/products');
     } catch (error) {
       setRegister(true);
@@ -37,52 +39,62 @@ function Register() {
   };
 
   return (
-    <form>
-      <h1>Cadastro</h1>
-      <label htmlFor="Nome">
-        Nome
-        <input
-          type="text"
-          name="name"
-          value={ name }
-          data-testid="common_register__input-name"
-          placeholder="Digite seu Nome"
-          onChange={ ({ target }) => setName(target.value) }
-        />
-      </label>
-      <label htmlFor="Email">
-        Email
-        <input
-          type="email"
-          name="email"
-          value={ email }
-          data-testid="common_register__input-email"
-          placeholder="Digite seu Email"
-          onChange={ ({ target }) => setEmail(target.value) }
-        />
-      </label>
-      <label htmlFor="Password">
-        Senha
-        <input
-          type="password"
-          name="name"
-          value={ password }
-          data-testid="common_register__input-password"
-          placeholder="Digite sua Senha"
-          onChange={ ({ target }) => setPassword(target.value) }
-        />
-      </label>
-      <button
-        type="button"
-        data-testid="common_register__button-register"
-        disabled={ disabledRegisterBttn() }
-        onClick={ handleClickRegister }
-      >
-        Cadastrar
-      </button>
-      {register
+    <div className="Body-LoginRegister">
+      <form className="LoginRegister-Form">
+        <h1>Cadastro</h1>
+        <br />
+        <section className="Input-LoginRegister">
+          <h2>Nome</h2>
+          <br />
+          <input
+            type="text"
+            name="name"
+            value={ name }
+            data-testid="common_register__input-name"
+            placeholder="Digite seu Nome"
+            onChange={ ({ target }) => setName(target.value) }
+          />
+        </section>
+
+        <section className="Input-LoginRegister">
+          <h2>Email</h2>
+          <br />
+          <input
+            type="email"
+            name="email"
+            value={ email }
+            data-testid="common_register__input-email"
+            placeholder="Digite seu Email"
+            onChange={ ({ target }) => setEmail(target.value) }
+          />
+        </section>
+
+        <section className="Input-LoginRegister">
+          <h2>Senha</h2>
+          <br />
+          <input
+            type="password"
+            name="name"
+            value={ password }
+            data-testid="common_register__input-password"
+            placeholder="Digite sua Senha"
+            onChange={ ({ target }) => setPassword(target.value) }
+          />
+        </section>
+        <button
+          className="Bttn-LoginRegister"
+          type="button"
+          data-testid="common_register__button-register"
+          disabled={ disabledRegisterBttn() }
+          onClick={ handleClickRegister }
+        >
+          Cadastrar
+        </button>
+        {register
     && <p data-testid="common_register__element-invalid_register">Usuário existente!</p> }
-    </form>
+      </form>
+    </div>
+
   );
 }
 

@@ -3,6 +3,7 @@
 import React, { useState, useEffect } from 'react';
 import { useHistory } from 'react-router-dom';
 import { getData } from '../Service/request';
+import '../Style/ProductCard.css';
 
 function ProductCard() {
   const history = useHistory();
@@ -76,57 +77,63 @@ function ProductCard() {
 
   return (
     <>
-      { product.map((item) => (
-        <div key={ item.id }>
-          <h2
-            data-testid={ `customer_products__element-card-title-${item.id}` }
-          >
-            {item.name}
-          </h2>
-          <h1
-            data-testid={ `customer_products__element-card-price-${item.id}` }
-          >
-            {item.price.replace(/\./, ',') }
-          </h1>
-          <img
-            data-testid={ `customer_products__img-card-bg-image-${item.id}` }
-            src={ item.urlImage }
-            alt={ item.name }
-            width="100px"
-          />
-          {/* {quantity <= 0
+      <div className="page">
+        {product.map((item) => (
+          <div key={ item.id } className="product">
+            <h1
+              data-testid={ `customer_products__element-card-title-${item.id}` }
+            >
+              {item.name}
+            </h1>
+            <h1
+              data-testid={ `customer_products__element-card-price-${item.id}` }
+            >
+              {item.price.replace(/\./, ',')}
+            </h1>
+            <img
+              data-testid={ `customer_products__img-card-bg-image-${item.id}` }
+              src={ item.urlImage }
+              alt={ item.name }
+              width="100px"
+            />
+            {/* {quantity <= 0
             ? setButtonDisabled === true
             : ( */}
-          <button
-            className="button"
-            type="button"
-            onClick={ () => removeQuantity(item) }
-            // disabled={ buttonDisabled }
-            data-testid={ `customer_products__button-card-rm-item-${item.id}` }
-          >
-            -
-          </button>
-          {/* )}
+            <div className="product-quantity">
+              <button
+                className="button"
+                type="button"
+                onClick={ () => removeQuantity(item) }
+                // disabled={ buttonDisabled }
+                data-testid={ `customer_products__button-card-rm-item-${item.id}` }
+              >
+                -
+              </button>
+              {/* )}
            */}
-          <input
-            type="text"
-            onChange={ ({ target }) => inputValue(item, target.value) }
-            // value={ quantity }
-            value={ quantity.find((i) => i.id === item.id)?.quantity
-              ? quantity.find((i) => i.id === item.id)?.quantity : 0 }
-            data-testid={ `customer_products__input-card-quantity-${item.id}` }
-          />
-          <button
-            className="button"
-            type="button"
-            onClick={ () => addQuantity(item) }
-            data-testid={ `customer_products__button-card-add-item-${item.id}` }
-          >
-            +
-          </button>
-        </div>
-      )) }
+              <input
+                type="text"
+                onChange={ ({ target }) => inputValue(item, target.value) }
+                // value={ quantity }
+                value={ quantity.find((i) => i.id === item.id)?.quantity
+                  ? quantity.find((i) => i.id === item.id)?.quantity : 0 }
+                data-testid={ `customer_products__input-card-quantity-${item.id}` }
+              />
+              <button
+                className="button"
+                type="button"
+                onClick={ () => addQuantity(item) }
+                data-testid={ `customer_products__button-card-add-item-${item.id}` }
+              >
+                +
+              </button>
+            </div>
+          </div>
+        ))}
+      </div>
+
       <button
+        className="checkout-button"
         type="button"
         data-testid="customer_products__button-cart"
         onClick={ () => history.push('/customer/checkout') }

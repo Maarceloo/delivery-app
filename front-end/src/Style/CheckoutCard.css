@@ -1,0 +1,108 @@
+.Main-Div-Checkout {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  margin-top: 100px;
+  width: 100vw;
+}
+
+.H1-Finalizar {  background-color: #7f3d13;
+  border: #7f3d13 solid 2px;
+  border-radius: 50%;
+  color: white;
+  font-size: larger;
+  padding: 15px;
+  position: absolute;
+  top: 122px;
+}
+
+table {
+  background-color: white;
+  border: 2px solid black;
+  border-radius: 10px;
+  padding: 35px;
+}
+
+td {
+  border: 1px solid black;
+  border-radius: 10px;
+  padding: 10px;
+}
+
+.Total-Price {
+  align-items: center;
+  background-color: #dc8522;
+  border-radius: 0 0 5px 5px;
+  display: flex;
+  flex-direction: column;
+  width: 300px;
+}
+
+.Btn-Remove {
+  background-color: #7f3d13;
+  border: 1px solid black;
+  border-radius: 10px;
+  color: white;
+  padding : 10px;
+}
+
+.Btn-Remove:hover {
+  cursor: pointer;
+  opacity: 0.8;
+}
+
+.Legend-Checkout {
+  align-content: center;
+  align-items: center;
+  background-color: #dc8522;
+  border: 2px solid black;
+  border-radius: 10px;
+  color: white;
+  display: flex;
+  flex-direction: column;
+  height: 250px;
+  justify-content: center;
+  padding: 145px;
+  text-align: center;
+  width: 570px;
+}
+
+.Board-Checkout-Payment {
+  margin-top: 30px;
+}
+
+.Generic-Btn {
+  align-self: center;
+  background-color: #7f3d13;
+  border: 1px solid black;
+  border-radius: 10px;
+  color: white;
+  display: flex;
+  justify-content: space-around;
+  padding : 10px;
+  width: 150px;
+}
+
+.Generic-Btn:hover {
+  cursor: pointer;
+  opacity: 0.8;
+}
+
+.Generic-Btn:disabled {
+  background-color: red;
+  color: white;
+  cursor: not-allowed;
+}
+
+.Generic-Input {
+  padding : 5px;
+}
+
+.Legend-Checkout-H1 {
+  background-color: #7f3d13;
+  border: #7f3d13 solid 2px;
+  border-radius: 50%;
+  font-size: larger;
+  padding: 15px;
+}

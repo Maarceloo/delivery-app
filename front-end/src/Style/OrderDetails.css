@@ -1,0 +1,25 @@
+.Main-Div-Order-Details {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+}
+
+.Section-Details-Order {
+  align-items: center;
+  background-color: white;
+  border: 2px solid black;
+  border-radius: 10px;
+  display: flex;
+  flex-direction: row;
+  font-size: smaller;
+  justify-content: space-evenly;
+  margin-bottom: 100px;
+  padding: 5px;
+  width: 100%;
+}
+
+.H1-Detail {
+  color: white;
+  padding: 30px;
+}
+
