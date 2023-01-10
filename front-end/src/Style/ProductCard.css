@@ -4,11 +4,10 @@
     box-sizing: border-box;
     font-family: 'Inter Tight', sans-serif;
     transition: all .2s linear;
-    background-color: rgb(255, 247, 247);
 }
 
 body {
-    background: url(https://img.freepik.com/fotos-gratis/conceito-de-madeira-da-textura-do-papel-de-parede-do-fundo-do-material_53876-16247.jpg?w=2000) fixed no-repeat;
+    background: url(https://i.pinimg.com/originals/ea/cf/58/eacf585308ddb4e2a7d33136b633aaca.jpg) fixed no-repeat;
     -webkit-background-size: cover;
     -o-background-size: cover;
     -moz-background-size: cover;
@@ -75,4 +74,14 @@ body {
 
 .product-quantity > button:hover {
     color: crimson;
+}
+
+.checkout-button {
+    position: fixed;
+    right: 0;
+    bottom: 0;
+    width: 80px;
+    height: 60px;
+    margin: 20px;
+    border-radius: 20px;
 }
