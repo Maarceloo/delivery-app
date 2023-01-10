@@ -157,7 +157,7 @@ function AdminPage() {
         </form>
         <br />
         <br />
-        <h1>Lista de Usuários</h1>
+        <h1 className="H1-Finalizar">Lista de Usuários</h1>
         <table>
           <thead>
             <tr>

@@ -83,7 +83,7 @@ function CheckoutCard() {
 
   return (
     <div className="Main-Div-Checkout">
-      <h1>Finalizar Pedido</h1>
+      <h1 className="H1-Finalizar">Finalizar Pedido</h1>
       <section className="Board">
         <table>
           <thead>

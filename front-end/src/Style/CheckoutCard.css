@@ -1,11 +1,14 @@
 .Main-Div-Checkout {
   align-items: center;
-  background-color: rgb(253, 253, 253);
   display: flex;
   flex-direction: column;
   height: 100vh;
   margin-top: 100px;
   width: 100vw;
+}
+
+.H1-Finalizar {
+  color: white;
 }
 
 table {
@@ -82,8 +85,8 @@ td {
 }
 
 .Generic-Btn:disabled {
-  background-color: rgb(232, 232, 232);
-  color: red;
+  background-color:red;
+  color: white;
   cursor: not-allowed;
 }
 
