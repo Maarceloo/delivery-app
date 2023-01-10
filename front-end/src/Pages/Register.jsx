@@ -28,8 +28,9 @@ function Register() {
 
   const handleClickRegister = async () => {
     try {
-      await postData('register', objRegister);
+      const infoRegister = await postData('register', objRegister);
       setRegister(false);
+      localStorage.setItem('user', JSON.stringify(infoRegister));
       history.push('/customer/products');
     } catch (error) {
       setRegister(true);
