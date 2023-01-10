@@ -1,4 +1,3 @@
-/* eslint-disable react/jsx-max-depth */
 import React, { useEffect, useState } from 'react';
 import { useHistory } from 'react-router-dom';
 import { getData, postData } from '../Service/request';
@@ -84,52 +83,53 @@ function CheckoutCard() {
   return (
     <div className="Main-Div-Checkout">
       <h1 className="H1-Finalizar">Finalizar Pedido</h1>
-      <section className="Board">
-        <table>
-          <thead>
-            <tr>
-              <th>Item</th>
-              <th>Descrição</th>
-              <th>Quantidade</th>
-              <th>Valor Unitário</th>
-              <th>Subtotal</th>
-              <th>Remover</th>
+      <table>
+        <thead>
+          <tr>
+            <th>Item</th>
+            <th>Descrição</th>
+            <th>Quantidade</th>
+            <th>Valor Unitário</th>
+            <th>Subtotal</th>
+            <th>Remover</th>
+          </tr>
+        </thead>
+        <tbody>
+          {cartProducts.map((item, index) => (
+            <tr key={ item.id }>
+              <td data-testid={ `${dataTestid}item-number-${index}` }>
+                {index + 1 }
+              </td>
+              <td data-testid={ `${dataTestid}name-${index}` }>{item.name}</td>
+              <td data-testid={ `${dataTestid}quantity-${index}` }>
+                {item.quantity}
+              </td>
+              <td data-testid={ `${dataTestid}unit-price-${index}` }>
+                {item.price.replace(/\./, ',')}
+              </td>
+              <td data-testid={ `${dataTestid}sub-total-${index}` }>
+                {(item.price * item.quantity).toFixed(2).replace(/\./, ',')}
+              </td>
+              <button
+                className="Btn-Remove"
+                type="button"
+                data-testid={ `${dataTestid}remove-${index}` }
+                value="Remover"
+                onClick={ () => removeItemCart(item) }
+              >
+                Remover
+              </button>
             </tr>
-          </thead>
-          <tbody>
-            {cartProducts.map((item, index) => (
-              <tr key={ item.id }>
-                <td data-testid={ `${dataTestid}item-number-${index}` }>
-                  {index + 1 }
-                </td>
-                <td data-testid={ `${dataTestid}name-${index}` }>{item.name}</td>
-                <td data-testid={ `${dataTestid}quantity-${index}` }>
-                  {item.quantity}
-                </td>
-                <td data-testid={ `${dataTestid}unit-price-${index}` }>
-                  {item.price.replace(/\./, ',')}
-                </td>
-                <td data-testid={ `${dataTestid}sub-total-${index}` }>
-                  {(item.price * item.quantity).toFixed(2).replace(/\./, ',')}
-                </td>
-                <button
-                  className="Btn-Remove"
-                  type="button"
-                  data-testid={ `${dataTestid}remove-${index}` }
-                  value="Remover"
-                  onClick={ () => removeItemCart(item) }
-                >
-                  Remover
-                </button>
-              </tr>
-            ))}
-          </tbody>
-        </table>
-        <h2 data-testid="customer_checkout__element-order-total-price">
-          Total da compra: R$
-          {` ${totalProducts().replace(/\./, ',')} `}
-        </h2>
-      </section>
+          ))}
+        </tbody>
+      </table>
+      <h2
+        className="Total-Price"
+        data-testid="customer_checkout__element-order-total-price"
+      >
+        Total da compra: R$
+        {` ${totalProducts().replace(/\./, ',')} `}
+      </h2>
       <form className="Board-Checkout-Payment">
         <fieldset className="Legend-Checkout">
           <legend
