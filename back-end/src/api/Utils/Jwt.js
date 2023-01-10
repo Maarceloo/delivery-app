@@ -12,7 +12,8 @@ const jwtConfig = {
 };
 
 const jwtSign = async ({ id, name, email }) => {
-  jwt.sign({ id, name, email }, await SECRET_KEY(), jwtConfig);
+  const token = jwt.sign({ id, name, email }, await SECRET_KEY(), jwtConfig);
+  return token;
 };
 
 const jwtValidate = async (req, res, next) => {
@@ -22,7 +23,6 @@ const jwtValidate = async (req, res, next) => {
 
   try {
     jwt.verify(token, await SECRET_KEY());
-    // req.user = decoded.userId;
     next();
   } catch (error) {
     return res.status(401).json({ message: 'Expired or invalid token' });

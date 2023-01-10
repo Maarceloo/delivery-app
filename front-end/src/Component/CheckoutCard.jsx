@@ -11,6 +11,7 @@ function CheckoutCard() {
   const [address, setAddress] = useState();
   const [number, setNumber] = useState();
   const [seller, setSeller] = useState([]);
+
   function getLocalStorage() {
     const cart = JSON.parse(localStorage.getItem('cart'));
     const user = JSON.parse(localStorage.getItem('user'));
@@ -63,7 +64,7 @@ function CheckoutCard() {
       deliveryAddress: address,
       deliveryNumber: number,
     };
-    // console.log(objSale);
+    console.log(objSale, userObj);
     const sale = await postData('customer/orders', objSale, userObj.token);
     cartProducts.map((itens) => {
       const obj = {
