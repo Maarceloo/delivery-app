@@ -84,7 +84,7 @@ function CheckoutCard() {
   return (
     <div className="Main-Div-Checkout">
       <h1>Finalizar Pedido</h1>
-      <section className="Board-Checkout">
+      <section className="Board">
         <table>
           <thead>
             <tr>
@@ -143,7 +143,7 @@ function CheckoutCard() {
             P.Vendedora Responsável
             <br />
             <select
-              className="Input-Checkout"
+              className="Generic-Input"
               data-testid="customer_checkout__select-seller"
               name="seller"
               id="seller"
@@ -161,7 +161,7 @@ function CheckoutCard() {
             Endereço de Entrega
             <br />
             <input
-              className="Input-Checkout"
+              className="Generic-Input"
               type="text"
               data-testid="customer_checkout__input-address"
               onChange={ ({ target }) => { saveAddress(target.value); } }
@@ -174,7 +174,7 @@ function CheckoutCard() {
             Número
             <br />
             <input
-              className="Input-Checkout"
+              className="Generic-Input"
               type="text"
               data-testid="customer_checkout__input-address-number"
               onChange={ ({ target }) => { saveNumber(target.value); } }

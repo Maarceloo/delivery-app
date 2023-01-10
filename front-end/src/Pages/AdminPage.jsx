@@ -94,7 +94,7 @@ function AdminPage() {
               Nome
               <br />
               <input
-                className="Input-Checkout"
+                className="Generic-Input"
                 type="text"
                 name="name"
                 data-testid="admin_manage__input-name"
@@ -106,7 +106,7 @@ function AdminPage() {
               Email
               <br />
               <input
-                className="Input-Checkout"
+                className="Generic-Input"
                 type="email"
                 name="email"
                 data-testid="admin_manage__input-email"
@@ -118,7 +118,7 @@ function AdminPage() {
               Senha
               <br />
               <input
-                className="Input-Checkout"
+                className="Generic-Input"
                 type="password"
                 name="name"
                 data-testid="admin_manage__input-password"
@@ -130,7 +130,7 @@ function AdminPage() {
               Tipo
               <br />
               <select
-                className="Input-Checkout"
+                className="Generic-Input"
                 data-testid="admin_manage__select-role"
                 name="seller"
                 id="seller"
@@ -143,7 +143,7 @@ function AdminPage() {
             </label>
             <br />
             <button
-              className="Btn-Checkout"
+              className="Generic-Btn"
               type="button"
               data-testid="admin_manage__button-register"
               disabled={ disabledRegisterBttn() }
@@ -205,7 +205,7 @@ function AdminPage() {
 
                   </td>
                   <button
-                    className="Btn-Checkout"
+                    className="Btn-Remove"
                     data-testid={ `admin_manage__element-user-table-remove-${item.id}` }
                     type="button"
                     onClick={ () => deleteUser(item.id) }

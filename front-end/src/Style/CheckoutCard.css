@@ -21,7 +21,7 @@ td {
   padding: 10px;
 }
 
-.Board-Checkout {
+.Board {
   align-items: center;
   background-color: #dc8522;
   border-radius: 10px;
@@ -87,7 +87,7 @@ td {
   cursor: not-allowed;
 }
 
-.Input-Checkout {
+.Generic-Input {
   padding : 5px;
 }
 

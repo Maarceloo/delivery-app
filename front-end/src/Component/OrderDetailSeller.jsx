@@ -87,7 +87,7 @@ function OrderDetailSeller() {
           Saiu para Entrega!
         </button>
       </section>
-      <section className="Board-Checkout">
+      <section className="Board">
         <table>
           <thead>
             <tr>

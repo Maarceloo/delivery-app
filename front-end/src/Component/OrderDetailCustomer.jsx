@@ -74,7 +74,7 @@ function OrderDetailCustomer() {
           Marcar Como Entregue
         </button>
       </section>
-      <section className="Board-Checkout">
+      <section className="Board">
         <table>
           <thead>
             <tr>
