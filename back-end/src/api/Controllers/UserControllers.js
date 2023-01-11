@@ -21,7 +21,10 @@ const postUser = async (req, res) => {
   if (status) {
     return res.status(status).json(message);
   }
-  return res.status(201).json(message);
+  const token = await jwtSign(message);
+
+  const { id, name, email, role } = message;
+  return res.status(201).json({ id, name, email, role, token });
 };
 const adminPostUser = async (req, res) => {
   const { body } = req;

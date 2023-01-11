@@ -23,7 +23,6 @@ function Login() {
     try {
       const infoLogin = await postData('login', objLogin);
       setLogin(false);
-      console.log(infoLogin);
       localStorage.setItem('user', JSON.stringify(infoLogin));
       if (infoLogin.role === 'seller') {
         history.push('/seller/orders');
@@ -34,9 +33,10 @@ function Login() {
       if (infoLogin.role === 'administrator') {
         history.push('/admin/manage');
       }
+      setEmail('');
+      setPassword('');
     } catch (error) {
       setLogin(true);
-      console.log('erro', error);
     }
   };
 
