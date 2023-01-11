@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useHistory } from 'react-router-dom';
 import { getData, postData } from '../Service/request';
+import changeValue from '../Service/functions';
 import '../Style/CheckoutCard.css';
 
 function CheckoutCard() {
@@ -40,7 +41,8 @@ function CheckoutCard() {
     const copyCartProducts = [...cartProducts];
     const total = copyCartProducts
       .reduce((acc, curr) => acc + curr.quantity * curr.price, 0);
-    return total.toFixed(2);
+    const result = changeValue(total);
+    return result;
   };
 
   const saveSeller = (id) => {
@@ -106,10 +108,10 @@ function CheckoutCard() {
                 {item.quantity}
               </td>
               <td data-testid={ `${dataTestid}unit-price-${index}` }>
-                {item.price.replace(/\./, ',')}
+                {changeValue(item.price)}
               </td>
               <td data-testid={ `${dataTestid}sub-total-${index}` }>
-                {(item.price * item.quantity).toFixed(2).replace(/\./, ',')}
+                {changeValue((item.price * item.quantity))}
               </td>
               <button
                 className="Btn-Remove"
@@ -128,8 +130,8 @@ function CheckoutCard() {
         className="Total-Price"
         data-testid="customer_checkout__element-order-total-price"
       >
-        Total da compra: R$
-        {` ${totalProducts().replace(/\./, ',')} `}
+        Total da compra:
+        {totalProducts()}
       </h2>
       <form className="Board-Checkout-Payment">
         <fieldset className="Legend-Checkout">

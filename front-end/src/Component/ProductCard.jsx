@@ -4,6 +4,7 @@ import React, { useState, useEffect } from 'react';
 import { useHistory } from 'react-router-dom';
 import { getData } from '../Service/request';
 import '../Style/ProductCard.css';
+import changeValue from '../Service/functions';
 
 function ProductCard() {
   const history = useHistory();
@@ -72,7 +73,8 @@ function ProductCard() {
       },
       0,
     );
-    return sum;
+    const result = changeValue(sum);
+    return result;
   };
 
   return (
@@ -96,25 +98,18 @@ function ProductCard() {
               alt={ item.name }
               width="100px"
             />
-            {/* {quantity <= 0
-            ? setButtonDisabled === true
-            : ( */}
             <div className="product-quantity">
               <button
                 className="button"
                 type="button"
                 onClick={ () => removeQuantity(item) }
-                // disabled={ buttonDisabled }
                 data-testid={ `customer_products__button-card-rm-item-${item.id}` }
               >
                 -
               </button>
-              {/* )}
-           */}
               <input
                 type="text"
                 onChange={ ({ target }) => inputValue(item, target.value) }
-                // value={ quantity }
                 value={ quantity.find((i) => i.id === item.id)?.quantity
                   ? quantity.find((i) => i.id === item.id)?.quantity : 0 }
                 data-testid={ `customer_products__input-card-quantity-${item.id}` }
@@ -142,7 +137,7 @@ function ProductCard() {
         <h4
           data-testid="customer_products__checkout-bottom-value"
         >
-          {`${sumCart().toFixed(2, 2).replace(/\./, ',')}`}
+          {sumCart()}
         </h4>
       </button>
 
