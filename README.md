@@ -1,10 +1,10 @@
 # Delivery App
 
-Neste projeto meu grupo foi responsavel por criar e integrar tanto o back-end quanto o front-end, criando uma plataforma de delivery de cerveja.
+Neste projeto meu grupo foi responsável por criar e integrar tanto o back-end quanto o front-end, criando uma plataforma de delivery de cerveja.
 
-Foi o projeto mais completo desenvolvido na Trybe com diversos desafios tecnicos e comportamentais. Inicialmente nosso grupo ultilizou o [**Trello**](https://trello.com/) para organizar o desenvolvimento dos requisitos, fizemos **Daily meeting** diarias para acompanhar o progresso individual e coletivo.
+Foi o projeto mais completo desenvolvido na Trybe com diversos desafios técnicos e comportamentais. Inicialmente nosso grupo utiliza o [**Trello**](https://trello.com/) para organizar o desenvolvimento dos requisitos, fizemos **Daily meeting** diárias para acompanhar o progresso individual e coletivo.
 
-Durante o desenvolvimento encontramos varias **divergencias de opinioes** construtivas sobre questoes tecnicas, das quais debatiamos o que seria melhor para o projeto como por exemplo se a aplicacao ficaria mais rapida e se seria de facil manutencao.
+Durante o desenvolvimento encontramos varias **divergências de opiniões** construtivas sobre questões técnicas, das quais debatíamos o que seria melhor para o projeto como, por exemplo, se a aplicação ficaria mais rápida e se seria de fácil manutenção.
 
 - #### O Projeto
 
