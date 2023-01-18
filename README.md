@@ -1,6 +1,29 @@
 # Delivery App
 
-<!-- TEXTO EM CONSTRUCAO -->
+Neste projeto meu grupo foi responsavel por criar e integrar tanto o back-end quanto o front-end, criando uma plataforma de delivery de cerveja.
+
+Foi o projeto mais completo desenvolvido na Trybe com diversos desafios tecnicos e comportamentais. Inicialmente nosso grupo ultilizou o [**Trello**](https://trello.com/) para organizar o desenvolvimento dos requisitos, fizemos **Daily meeting** diarias para acompanhar o progresso individual e coletivo.
+
+Durante o desenvolvimento encontramos varias **divergencias de opinioes** construtivas sobre questoes tecnicas, das quais debatiamos o que seria melhor para o projeto como por exemplo se a aplicacao ficaria mais rapida e se seria de facil manutencao.
+
+- #### O Projeto
+
+  - Ter acesso via login: tanto clientes como pessoas vendedoras, assim como o próprio dono do estabelecimento, que administra o sistema, devem ter acesso ao aplicativo via login, porém para funções diferentes: (1) A pessoa cliente, que compra da lista de produtos; (2) A pessoa vendedora, que aprova, prepara e entrega; (3) A pessoa administradora, que gerencia quem usa o aplicativo;
+
+  - Fazer a comunicação entre clientes e pessoas vendedoras: a pessoa cliente faz o pedido via "carrinho de compras" e a pessoa vendedora aprova, prepara e envia esse pedido. Quando o produto é recebido por quem comprou, essa pessoa marca o pedido como "recebido". Ambos devem possuir detalhes sobre seus pedidos;
+
+  - Se a pessoa cliente faz o pedido, o mesmo deve aparecer para a pessoa vendedora em seu dash de pedidos após a atualização da página. A pessoa cliente, por sua vez, deve ter as informações sobre seu pedido quando sua página for atualizada, ou seja, ter informações se o pedido está sendo preparado ou se já saiu pra entrega;
+
+- #### Diagrama de ER
+
+![diagrama_banco](/front-end/src/images/diagrama_banco.png)
+A ideia da já pressupõe alguma escalabilidade, dado que foram estabelecidas algumas entidades genéricas no banco de dados e componentização no front-end, para que, caso o sistema cresça, não seja muito difícil mudar e ampliar essa estrutura.
+
+- #### Video da aplicacao funcionando
+
+    [**Youtube**](https://youtu.be/Agai8tJdYOU)
+
+----
 
 ## 📋 Pré-requisitos
 
